@@ -39,9 +39,9 @@ export function Unique() {
 
         <div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden shadow-2xl">
           <ImageWithFallback
-            src="https://images.unsplash.com/photo-1667372525822-d226d23018dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb2JvdGljcyUyMGVuZ2luZWVyaW5nJTIwYmx1ZXByaW50JTIwZGlhZ3JhbXxlbnwxfHx8fDE3NzAyMDQyNDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-            alt="Engineering Blueprint"
-            className="absolute inset-0 w-full h-full object-cover"
+            src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1080&auto=format&fit=crop"
+            alt="Robotics Engineer Working on Physical AI"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
           />
           <div className="absolute inset-0 bg-blue-900/10" />
         </div>
