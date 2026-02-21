@@ -1,6 +1,7 @@
 import { Section } from "./Section";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { Check } from "lucide-react";
+import whyChooseUsImg from "@/assets/why_choose_us.png";
 
 const strengths = [
   "Focus on solving real-world problems using Physical AI and Robotics",
@@ -39,9 +40,9 @@ export function Unique() {
 
         <div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden shadow-2xl">
           <ImageWithFallback
-            src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1080&auto=format&fit=crop"
-            alt="Robotics Engineer Working on Physical AI"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+            src={whyChooseUsImg}
+            alt="Why Choose AISOTOP - What Makes Us Different"
+            className="absolute inset-0 w-full h-full object-contain bg-slate-900 transition-transform duration-700 hover:scale-105 p-8"
           />
           <div className="absolute inset-0 bg-blue-900/10" />
         </div>
