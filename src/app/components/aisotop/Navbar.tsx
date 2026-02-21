@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 import logo from "figma:asset/48d643282720ccf0457972cedd4b1db2988d0ebb.png";
+import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { name: "Home", href: "#home" },
@@ -83,6 +84,7 @@ export function Navbar() {
           >
             Get in Touch
           </motion.a>
+          <ThemeToggle />
         </motion.div>
 
         {/* Mobile Toggle */}
@@ -129,6 +131,9 @@ export function Navbar() {
               >
                 Get in Touch
               </motion.a>
+              <div className="mt-4">
+                <ThemeToggle />
+              </div>
             </div>
           </motion.div>
         )}

@@ -3,12 +3,13 @@
 import { Section } from "./Section";
 import { Bot, BrainCircuit, Factory, GraduationCap, Presentation, Wrench } from "lucide-react";
 import { motion } from "motion/react";
+import { BorderBeam } from "./BorderBeam";
 
 const services = [
   {
     icon: Bot,
-    title: "Robotics Product Development",
-    desc: "Designing innovative robotics integrated with cutting-edge AI.",
+    title: "Physical AI & Robotics",
+    desc: "Bridging the gap between intelligent software and physical hardware.",
   },
   {
     icon: BrainCircuit,
@@ -95,6 +96,7 @@ export function Services() {
             }}
             className="group relative bg-white/5 p-10 rounded-[2.5rem] border border-white/5 hover:border-primary/20 hover:bg-white/[0.08] transition-all overflow-hidden"
           >
+            {index === 0 && <BorderBeam size={150} duration={8} borderWidth={2} colorFrom="#030213" colorTo="#333" />}
             {/* Hover Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

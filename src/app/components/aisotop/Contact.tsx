@@ -18,7 +18,7 @@ export function Contact() {
             <div className="relative z-10 max-w-7xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold mb-4">Let’s Build the Future Together</h2>
-                    <p className="text-xl text-gray-400">Transforming ideas into intelligent robotic solutions.</p>
+                    <p className="text-xl text-gray-400">Transforming ideas into intelligent Physical AI & robotic solutions.</p>
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 border-t border-gray-800 pt-12">
@@ -28,7 +28,7 @@ export function Contact() {
                             <h3 className="text-2xl font-bold text-white">AISOTOP</h3>
                         </div>
                         <p className="text-gray-400 max-w-sm mb-6">
-                            Leading the way in Robotics, AI, and Automation solutions for a smarter tomorrow.
+                            Leading the way in Physical AI, Robotics, and Automation solutions for a smarter tomorrow.
                         </p>
                         <div className="flex gap-4">
                             {/* Social placeholders */}
@@ -41,10 +41,10 @@ export function Contact() {
                     <div>
                         <h4 className="font-bold text-white mb-6">Services</h4>
                         <ul className="space-y-3 text-gray-400">
-                            <li>Robotics</li>
-                            <li>Artificial Intelligence</li>
-                            <li>Automation</li>
-                            <li>Education</li>
+                            <li>Physical AI & Robotics</li>
+                            <li>Automation Systems</li>
+                            <li>Industry Solutions</li>
+                            <li>Education & Training</li>
                         </ul>
                     </div>
 

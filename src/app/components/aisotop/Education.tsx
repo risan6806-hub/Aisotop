@@ -1,6 +1,7 @@
 import { Section } from "./Section";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { BookOpen, Users, Lightbulb, Target } from "lucide-react";
+import { BorderBeam } from "./BorderBeam";
 
 const features = [
   { icon: BookOpen, title: "Robotics & AI Classes", desc: "Comprehensive curriculum for schools." },
@@ -13,21 +14,27 @@ export function Education() {
   return (
     <Section id="education">
       <div className="flex flex-col-reverse lg:flex-row gap-16 items-center">
-        <div className="lg:w-1/2 relative rounded-2xl overflow-hidden shadow-xl">
+        <div className="lg:w-1/2 relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
           <ImageWithFallback
-            src="https://images.unsplash.com/photo-1707027555270-7ccf3c67e3e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHVkZW50cyUyMGJ1aWxkaW5nJTIwcm9ib3RzJTIwY2xhc3Nyb29tfGVufDF8fHx8MTc3MDIwNDI0M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-            alt="Students in Robotics Workshop"
-            className="w-full h-full object-cover"
+            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop"
+            alt="Robotics Education in Schools and Colleges"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
         </div>
 
         <div className="lg:w-1/2 space-y-8">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-4">
-              Empowering Schools & Colleges
+            <div className="inline-block relative px-4 py-1.5 bg-primary/10 text-primary rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-4 overflow-hidden">
+              <BorderBeam size={100} duration={6} borderWidth={1.5} />
+              Education & Growth
+            </div>
+            <h2 className="text-5xl md:text-6xl font-black text-foreground leading-[0.9] mb-6 tracking-tighter uppercase">
+              Empowering <br />
+              <span className="text-primary text-4xl md:text-5xl">Schools and Colleges</span>
             </h2>
-            <p className="text-lg text-foreground/60">
-              We bridge the gap between academic theory and industry practice through immersive robotics education.
+            <p className="text-xl text-foreground/60 leading-relaxed">
+              We bridge the gap between academic theory and industry practice through immersive robotics education and hands-on workshops.
             </p>
           </div>
 

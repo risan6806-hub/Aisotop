@@ -12,6 +12,7 @@ import { StudentProjects } from "./components/aisotop/StudentProjects";
 import { Automation } from "./components/aisotop/Automation";
 import { Contact } from "./components/aisotop/Contact";
 import { CustomCursor } from "./components/aisotop/CustomCursor";
+import { ThemeProvider } from "./components/aisotop/ThemeProvider";
 
 export default function App() {
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="dark">
+    <ThemeProvider attribute="class" defaultTheme="dark">
       <div className="bg-background min-h-screen relative text-foreground selection:bg-primary selection:text-primary-foreground">
         <div className="noise-overlay" />
         <Navbar />
@@ -42,6 +43,6 @@ export default function App() {
           <Contact />
         </main>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }

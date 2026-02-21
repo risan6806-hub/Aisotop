@@ -16,7 +16,7 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
-  const words = "Solving Real World Problems with Robotics & AI".split(" ");
+  const words = "Solving Real World Problems with Physical AI & Robotics".split(" ");
 
   return (
     <section
