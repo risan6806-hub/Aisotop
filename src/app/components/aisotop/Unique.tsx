@@ -14,37 +14,38 @@ const strengths = [
 
 export function Unique() {
   return (
-    <Section id="unique">
+    <Section id="unique" className="bg-black py-24">
       <div className="grid lg:grid-cols-2 gap-16 items-center">
-        <div className="space-y-8">
-          <div>
-            <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-bold uppercase tracking-wider mb-2">
+        <div className="space-y-10">
+          <div className="space-y-4">
+            <div className="inline-block px-4 py-1.5 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-bold uppercase tracking-widest">
               Why Choose Us
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
-              What Makes AISOTOP Unique
+            <h2 className="text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight">
+              What Makes <span className="text-primary italic">AISOTOP</span> <br /> Unique
             </h2>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {strengths.map((item, idx) => (
-              <div key={idx} className="flex items-start gap-4 p-4 bg-card/50 backdrop-blur-sm rounded-xl shadow-sm border border-border/50 hover:shadow-md transition-shadow group">
-                <div className="mt-1 bg-primary/10 p-1 rounded-full text-primary group-hover:scale-110 transition-transform">
-                  <Check size={16} strokeWidth={3} />
+              <div key={idx} className="flex items-center gap-5 p-5 bg-zinc-900/50 backdrop-blur-xl rounded-2xl border border-white/5 hover:border-primary/30 hover:bg-zinc-800/50 transition-all duration-300 group">
+                <div className="flex-shrink-0 w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
+                  <Check size={18} strokeWidth={3} />
                 </div>
-                <span className="text-lg text-muted-foreground font-medium group-hover:text-foreground transition-colors">{item}</span>
+                <span className="text-xl text-zinc-400 font-medium group-hover:text-white transition-colors duration-300">{item}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-border/50">
+        <div className="group relative aspect-square lg:h-full min-h-[500px] rounded-[40px] overflow-hidden border border-white/10 bg-white/5">
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1590412200988-a403497c432e?auto=format&fit=crop&q=80&w=2070"
-            alt="AISOTOP Uniqueness - Standing Out from the Crowd"
-            className="absolute inset-0 w-full h-full object-cover bg-background transition-transform duration-700 hover:scale-105"
+            alt="AISOTOP Uniqueness - Standing Out"
+            className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-primary/5" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+          <div className="absolute inset-0 border-[15px] border-black/10 rounded-[40px] pointer-events-none" />
         </div>
       </div>
     </Section>
