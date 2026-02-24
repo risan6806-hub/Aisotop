@@ -63,10 +63,15 @@ export function Contact() {
                                 <span>aisotop.robotics@gmail.com</span>
                             </li>
                             <li className="flex items-start gap-3">
-                                <MapPin size={18} className="text-blue-500 mt-1" />
-                                <span>
-                                    673586, West kaithapoyil
-                                </span>
+                                <MapPin size={18} className="text-blue-500 mt-1 shrink-0" />
+                                <a
+                                    href="https://maps.app.goo.gl/fPnQcWjmPYn2EQHs9"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-gray-400 hover:text-blue-400 transition-colors"
+                                >
+                                    west, Kaithapoyil Bridge, Kaithappoyil, kozhikode, Kerala 673586
+                                </a>
                             </li>
                         </ul>
                     </div>

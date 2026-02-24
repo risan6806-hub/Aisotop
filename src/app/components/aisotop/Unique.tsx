@@ -14,37 +14,37 @@ const strengths = [
 
 export function Unique() {
   return (
-    <Section id="unique" className="bg-gray-50">
+    <Section id="unique">
       <div className="grid lg:grid-cols-2 gap-16 items-center">
         <div className="space-y-8">
           <div>
-            <div className="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
+            <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-bold uppercase tracking-wider mb-2">
               Why Choose Us
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
               What Makes AISOTOP Unique
             </h2>
           </div>
 
           <div className="space-y-4">
             {strengths.map((item, idx) => (
-              <div key={idx} className="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="mt-1 bg-blue-100 p-1 rounded-full text-blue-600">
+              <div key={idx} className="flex items-start gap-4 p-4 bg-card/50 backdrop-blur-sm rounded-xl shadow-sm border border-border/50 hover:shadow-md transition-shadow group">
+                <div className="mt-1 bg-primary/10 p-1 rounded-full text-primary group-hover:scale-110 transition-transform">
                   <Check size={16} strokeWidth={3} />
                 </div>
-                <span className="text-lg text-slate-700 font-medium">{item}</span>
+                <span className="text-lg text-muted-foreground font-medium group-hover:text-foreground transition-colors">{item}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+        <div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-border/50">
           <ImageWithFallback
             src={whyChooseUsImg}
             alt="Why Choose AISOTOP - What Makes Us Different"
-            className="absolute inset-0 w-full h-full object-contain bg-slate-900 transition-transform duration-700 hover:scale-105 p-8"
+            className="absolute inset-0 w-full h-full object-cover bg-background transition-transform duration-700 hover:scale-105"
           />
-          <div className="absolute inset-0 bg-blue-900/10" />
+          <div className="absolute inset-0 bg-primary/5" />
         </div>
       </div>
     </Section>
