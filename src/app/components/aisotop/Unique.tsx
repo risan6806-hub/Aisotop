@@ -39,7 +39,7 @@ export function Unique() {
           </div>
         </div>
 
-        <div className="group relative aspect-square lg:h-full min-h-[500px] rounded-[40px] overflow-hidden border border-white/10 bg-white/5">
+        <div className="group relative aspect-video w-full rounded-[40px] overflow-hidden border border-white/10 bg-white/5 shadow-2xl">
           <ImageWithFallback
             src={uniquePenguinImg}
             alt="AISOTOP Uniqueness - Standing Out"
