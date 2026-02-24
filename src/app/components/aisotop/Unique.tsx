@@ -40,8 +40,8 @@ export function Unique() {
 
         <div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-border/50">
           <ImageWithFallback
-            src={whyChooseUsImg}
-            alt="Why Choose AISOTOP - What Makes Us Different"
+            src="https://images.unsplash.com/photo-1551966775-a4ddc8df0503?auto=format&fit=crop&q=80&w=2070"
+            alt="Why Choose AISOTOP - Standing Out in Physical AI and Robotics"
             className="absolute inset-0 w-full h-full object-cover bg-background transition-transform duration-700 hover:scale-105"
           />
           <div className="absolute inset-0 bg-primary/5" />
