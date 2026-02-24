@@ -16,37 +16,52 @@ const strengths = [
 export function Unique() {
   return (
     <Section id="unique" className="bg-black py-24">
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
-        <div className="space-y-10">
-          <div className="space-y-4">
-            <div className="inline-block px-4 py-1.5 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-bold uppercase tracking-widest">
-              Why Choose Us
+      <div className="space-y-24">
+        <div className="grid lg:grid-cols-2 gap-20 items-start">
+          <div className="space-y-10">
+            <div className="space-y-6">
+              <div className="inline-block px-4 py-1.5 bg-primary/20 text-primary border border-primary/30 rounded-full text-[10px] font-black uppercase tracking-[0.2em]">
+                Why Choose Us
+              </div>
+              <h2 className="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter">
+                What Makes <br />
+                <span className="text-primary">AISOTOP</span> <br />
+                <span className="text-white italic">Unique</span>
+              </h2>
             </div>
-            <h2 className="text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight">
-              What Makes <span className="text-primary italic">AISOTOP</span> <br /> Unique
-            </h2>
+
+            <p className="text-xl text-zinc-500 max-w-lg leading-relaxed font-medium">
+              We stand at the intersection of Physical AI and Robotics, delivering solutions that bridge the gap between digital intelligence and physical execution.
+            </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="grid gap-3">
             {strengths.map((item, idx) => (
-              <div key={idx} className="flex items-center gap-5 p-5 bg-zinc-900/50 backdrop-blur-xl rounded-2xl border border-white/5 hover:border-primary/30 hover:bg-zinc-800/50 transition-all duration-300 group">
-                <div className="flex-shrink-0 w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
-                  <Check size={18} strokeWidth={3} />
+              <div key={idx} className="flex items-center gap-5 p-6 bg-zinc-900/40 backdrop-blur-xl rounded-[2rem] border border-white/5 hover:border-primary/30 hover:bg-zinc-800/50 transition-all duration-500 group">
+                <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black transition-all duration-500">
+                  <Check size={20} strokeWidth={3} />
                 </div>
-                <span className="text-xl text-zinc-400 font-medium group-hover:text-white transition-colors duration-300">{item}</span>
+                <span className="text-lg text-zinc-400 font-bold tracking-tight group-hover:text-white transition-colors duration-300">{item}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="group relative aspect-video w-full rounded-[40px] overflow-hidden border border-white/10 bg-white/5 shadow-2xl">
+        <div className="group relative aspect-[21/9] w-full rounded-[3.5rem] overflow-hidden border border-white/10 bg-white/5 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
           <ImageWithFallback
             src={uniquePenguinImg}
             alt="AISOTOP Uniqueness - Standing Out"
-            className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover grayscale-[0.4] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-[1.03]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-          <div className="absolute inset-0 border-[15px] border-black/10 rounded-[40px] pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-700" />
+          <div className="absolute bottom-12 left-12 space-y-2">
+            <div className="text-primary text-[10px] font-black uppercase tracking-[0.4em]">
+              The AISOTOP Difference
+            </div>
+            <div className="text-white text-2xl font-black tracking-tighter uppercase">
+              Standing Out Through Innovation
+            </div>
+          </div>
         </div>
       </div>
     </Section>
