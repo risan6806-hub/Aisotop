@@ -1,8 +1,7 @@
 import { Section } from "./Section";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { Check } from "lucide-react";
-import whyChooseUsImg from "@/assets/why_choose_us.png";
-import uniquePenguinImg from "@/assets/unique_penguin.jpg";
+import whyAisotopImg from "@/assets/why_aisotop.jpg";
 
 const strengths = [
   "Focus on solving real-world problems using Physical AI and Robotics",
@@ -49,7 +48,7 @@ export function Unique() {
 
         <div className="group relative aspect-[21/9] w-full rounded-[3.5rem] overflow-hidden border border-white/10 bg-white/5 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
           <ImageWithFallback
-            src={uniquePenguinImg}
+            src={whyAisotopImg}
             alt="AISOTOP Uniqueness - Standing Out"
             className="w-full h-full object-cover grayscale-[0.4] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-[1.03]"
           />
