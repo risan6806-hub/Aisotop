@@ -11,7 +11,6 @@ import { Contribution } from "./components/aisotop/Contribution";
 import { StudentProjects } from "./components/aisotop/StudentProjects";
 import { Automation } from "./components/aisotop/Automation";
 import { Contact } from "./components/aisotop/Contact";
-import { CustomCursor } from "./components/aisotop/CustomCursor";
 import { ThemeProvider } from "./components/aisotop/ThemeProvider";
 import { Preloader } from "./components/aisotop/Preloader";
 import { AnimatePresence } from "framer-motion";
@@ -42,7 +41,6 @@ export default function App() {
       {!isLoading && (
         <div className="bg-background min-h-screen relative text-foreground selection:bg-primary selection:text-primary-foreground">
           <div className="noise-overlay" />
-          <CustomCursor />
           <Navbar />
           <main>
             <Hero />
