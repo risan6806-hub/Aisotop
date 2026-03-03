@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Lenis from "lenis";
 import { Navbar } from "./components/aisotop/Navbar";
 import { Hero } from "./components/aisotop/Hero";
@@ -13,9 +13,15 @@ import { Automation } from "./components/aisotop/Automation";
 import { Contact } from "./components/aisotop/Contact";
 import { CustomCursor } from "./components/aisotop/CustomCursor";
 import { ThemeProvider } from "./components/aisotop/ThemeProvider";
+import { Preloader } from "./components/aisotop/Preloader";
+import { AnimatePresence } from "framer-motion";
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
+    if (isLoading) return;
+
     const lenis = new Lenis();
     function raf(time: number) {
       lenis.raf(time);
@@ -23,26 +29,35 @@ export default function App() {
     }
     requestAnimationFrame(raf);
     return () => lenis.destroy();
-  }, []);
+  }, [isLoading]);
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
-      <div className="bg-background min-h-screen relative text-foreground selection:bg-primary selection:text-primary-foreground">
-        <div className="noise-overlay" />
-        <Navbar />
-        <main>
-          <Hero />
-          <About />
-          <Unique />
-          <Services />
-          <Automation />
-          <Products />
-          <Education />
-          <StudentProjects />
-          <Contribution />
-          <Contact />
-        </main>
-      </div>
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <Preloader key="preloader" onLoadingComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
+
+      {!isLoading && (
+        <div className="bg-background min-h-screen relative text-foreground selection:bg-primary selection:text-primary-foreground">
+          <div className="noise-overlay" />
+          <CustomCursor />
+          <Navbar />
+          <main>
+            <Hero />
+            <About />
+            <Unique />
+            <Services />
+            <Automation />
+            <Products />
+            <Education />
+            <StudentProjects />
+            <Contribution />
+            <Contact />
+          </main>
+        </div>
+      )}
     </ThemeProvider>
   );
 }
