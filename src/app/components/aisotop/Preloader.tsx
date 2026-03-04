@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "@/styles/preloader.css";
-import logoPrimary from "@/assets/logo_primary.png";
 
 interface PreloaderProps {
     onLoadingComplete: () => void;
@@ -13,21 +12,23 @@ export function Preloader({ onLoadingComplete }: PreloaderProps) {
     useEffect(() => {
         let current = 0;
         const interval = setInterval(() => {
-            const increment = Math.floor(Math.random() * 5) + 1;
+            const increment = Math.floor(Math.random() * 6) + 3;
             current += increment;
 
             if (current >= 100) {
                 current = 100;
                 setProgress(100);
                 clearInterval(interval);
-                setTimeout(onLoadingComplete, 800);
+                setTimeout(onLoadingComplete, 400);
             } else {
                 setProgress(current);
             }
-        }, 30);
+        }, 25);
 
         return () => clearInterval(interval);
     }, [onLoadingComplete]);
+
+    const displayText = `${String(progress).padStart(2, '0')}%`;
 
     return (
         <motion.div
@@ -35,49 +36,55 @@ export function Preloader({ onLoadingComplete }: PreloaderProps) {
             initial={{ opacity: 1 }}
             exit={{
                 opacity: 0,
-                scale: 1.1,
                 transition: {
-                    duration: 0.8,
+                    duration: 1,
                     ease: [0.76, 0, 0.24, 1],
                 },
             }}
         >
-
             <div className="preloader-content">
-                {/* Calibration Box */}
+                {/* Large striped percentage */}
                 <motion.div
-                    className="preloader-logo-container"
-                    initial={{ opacity: 0, scale: 0.9, rotateX: 20 }}
-                    animate={{ opacity: 1, scale: 1, rotateX: 0 }}
+                    className="preloader-percentage-wrapper"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 >
-                    <div className="preloader-calibration-text">System Calibration: AISOTOP_CORE</div>
-
-                    {/* Perimeter Beam */}
-                    <div className="preloader-beam-container">
-                        <div className="preloader-beam" />
-                    </div>
-
-                    {/* Logo image */}
-                    <img
-                        src={logoPrimary}
-                        alt="AISOTOP"
-                        className="preloader-logo"
-                    />
-
-                    <div className="preloader-tech-numbers">
-                        TR-29.04 // MOD-83 // CALIB_{progress}%
-                    </div>
+                    <svg
+                        className="preloader-percentage-svg"
+                        viewBox="0 0 500 200"
+                        preserveAspectRatio="xMidYMid meet"
+                    >
+                        <defs>
+                            {/* Art Deco striped pattern */}
+                            <pattern
+                                id="stripe-pattern"
+                                patternUnits="userSpaceOnUse"
+                                width="100"
+                                height="6"
+                            >
+                                <rect width="100" height="3.5" fill="rgba(130, 120, 155, 0.6)" />
+                                <rect y="3.5" width="100" height="2.5" fill="rgba(130, 120, 155, 0)" />
+                            </pattern>
+                        </defs>
+                        <text
+                            x="250"
+                            y="115"
+                            className="preloader-percentage-text"
+                        >
+                            {displayText}
+                        </text>
+                    </svg>
                 </motion.div>
 
-                {/* Percentage */}
+                {/* Subtle label */}
                 <motion.div
-                    className="preloader-percentage"
+                    className="preloader-label"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
                 >
-                    {String(progress).padStart(2, '0')}
+                    Loading
                 </motion.div>
             </div>
         </motion.div>

@@ -1,3 +1,5 @@
+/* ===== Milla Nova "Chapter: Bride" Inspired Preloader ===== */
+
 .preloader {
     position: fixed;
     inset: 0;
@@ -5,15 +7,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #000;
+    background-color: #f0ede8;
     overflow: hidden;
-    /* Grid background */
-    background-image:
-        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
 }
 
+/* Subtle paper texture via noise */
+.preloader::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Inset lavender border/glow */
+.preloader::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 80px 20px rgba(160, 150, 190, 0.15);
+    border: 1px solid rgba(160, 150, 190, 0.12);
+    pointer-events: none;
+    z-index: 1;
+}
 
 .preloader-content {
     position: relative;
@@ -21,100 +38,40 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
-}
-
-/* ===== Calibration Box (was Logo Container) ===== */
-.preloader-logo-container {
-    position: relative;
-    display: flex;
     justify-content: center;
+    gap: 0;
+}
+
+/* ===== SVG Percentage Display ===== */
+.preloader-percentage-wrapper {
+    display: flex;
     align-items: center;
-    width: clamp(450px, 65vw, 850px);
-    height: clamp(250px, 35vw, 450px);
-    /* Rectangular */
-    border: 1px dashed rgba(0, 255, 255, 0.3);
-    padding: 2rem;
-    background: rgba(0, 255, 255, 0.02);
+    justify-content: center;
 }
 
-.preloader-calibration-text {
-    position: absolute;
-    top: -1.5rem;
-    left: 0;
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
-    font-size: 0.75rem;
-    color: #00FFFF;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    opacity: 0.8;
+.preloader-percentage-svg {
+    width: clamp(280px, 45vw, 600px);
+    height: clamp(140px, 22vw, 300px);
+    overflow: visible;
 }
 
-.preloader-tech-numbers {
-    position: absolute;
-    bottom: -1.5rem;
-    right: 0;
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
+/* The striped pattern text */
+.preloader-percentage-text {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-size: 180px;
+    font-weight: 900;
+    fill: url(#stripe-pattern);
+    dominant-baseline: central;
+    text-anchor: middle;
+}
+
+/* ===== "Loading" label ===== */
+.preloader-label {
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
     font-size: 0.7rem;
-    color: #00FFFF;
-    opacity: 0.6;
-}
-
-/* ===== Logo ===== */
-.preloader-logo {
-    width: 65%;
-    height: auto;
-    object-fit: contain;
-    z-index: 2;
-    filter: drop-shadow(0 0 45px rgba(0, 255, 255, 0.4));
-}
-
-/* ===== Rectangular Beam (using BorderBeam-like logic) ===== */
-.preloader-beam-container {
-    position: absolute;
-    inset: -1px;
-    border-radius: 0;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.preloader-beam {
-    position: absolute;
-    width: 120px;
-    height: 4px;
-    background: linear-gradient(to right, transparent, #00FFFF, #00FFFF, transparent);
-    offset-path: rect(0 100% 100% 0 round 0);
-    animation: beam-travel 2.5s linear infinite;
-    filter: blur(1px) drop-shadow(0 0 10px #00FFFF);
-}
-
-@keyframes beam-travel {
-    0% {
-        offset-distance: 0%;
-    }
-
-    100% {
-        offset-distance: 100%;
-    }
-}
-
-@keyframes ring-rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* ===== Percentage Text ===== */
-.preloader-percentage {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--muted-foreground);
-    letter-spacing: 0.2em;
-    margin-top: 0.5rem;
-    font-variant-numeric: tabular-nums;
+    font-weight: 400;
+    color: rgba(100, 90, 120, 0.5);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-top: 1.5rem;
 }

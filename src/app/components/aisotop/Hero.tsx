@@ -42,18 +42,6 @@ export function Hero() {
         style={{ opacity }}
         className="relative z-10 text-center px-6 max-w-5xl mx-auto"
       >
-        <div className="overflow-hidden mb-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-md"
-          >
-            <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-primary/80">
-              Future of Innovation
-            </span>
-          </motion.div>
-        </div>
 
         <div className="overflow-hidden mb-6">
           <motion.h1
