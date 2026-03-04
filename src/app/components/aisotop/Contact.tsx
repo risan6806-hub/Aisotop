@@ -54,13 +54,26 @@ export function Contact() {
                             <li className="flex items-start gap-3">
                                 <Phone size={18} className="text-blue-500 mt-1" />
                                 <div className="flex flex-col">
-                                    <span>+91 90747 02722</span>
-                                    <span>+91 97458 15897</span>
+                                    <a href="tel:+919074702722" className="hover:text-blue-400 transition-colors">+91 90747 02722</a>
+                                    <a href="tel:+919745815897" className="hover:text-blue-400 transition-colors">+91 97458 15897</a>
                                 </div>
                             </li>
-                            <li className="flex items-center gap-3">
-                                <Mail size={18} className="text-blue-500" />
-                                <span>aisotop.robotics@gmail.com</span>
+                            <li className="flex items-start gap-3">
+                                <Mail size={18} className="text-blue-500 mt-1" />
+                                <div className="flex flex-col">
+                                    <a
+                                        href="mailto:info@aisotop.com"
+                                        className="hover:text-blue-400 transition-colors"
+                                    >
+                                        info@aisotop.com
+                                    </a>
+                                    <a
+                                        href="mailto:aisotop.robotics@gmail.com"
+                                        className="hover:text-blue-400 transition-colors"
+                                    >
+                                        aisotop.robotics@gmail.com
+                                    </a>
+                                </div>
                             </li>
                             <li className="flex items-start gap-3">
                                 <MapPin size={18} className="text-blue-500 mt-1 shrink-0" />
