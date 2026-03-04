@@ -86,7 +86,7 @@ export function Services() {
           <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 text-foreground">
             Specialized <span className="text-primary italic">Solutions</span>
           </h2>
-          <p className="text-foreground/40 text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-xl max-w-2xl mx-auto leading-relaxed">
             Comprehensive solutions ranging from industrial automation to educational empowerment, driven by the future of AI.
           </p>
         </motion.div>
@@ -108,7 +108,7 @@ export function Services() {
               scale: 1.01,
               transition: { duration: 0.3, ease: "easeOut" }
             }}
-            className="group relative bg-[#0a0a0b] rounded-[2.5rem] border border-white/5 hover:border-primary/30 transition-all overflow-hidden h-[520px] shadow-2xl"
+            className="group relative bg-card rounded-[2.5rem] border border-border hover:border-primary/30 transition-all overflow-hidden h-[520px] shadow-2xl"
           >
             {/* Image Section */}
             <div className="relative h-60 w-full overflow-hidden">
@@ -117,7 +117,7 @@ export function Services() {
                 alt={service.title}
                 className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/40 to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent opacity-80" />
               <div className="absolute top-6 right-6 w-12 h-12 bg-primary/10 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/10 group-hover:bg-primary group-hover:text-background transition-all duration-500">
                 <service.icon className="text-primary group-hover:text-background transition-colors duration-500" size={24} />
               </div>
@@ -127,7 +127,7 @@ export function Services() {
 
             <div className="p-8 relative z-10">
               <h3 className="text-2xl font-bold mb-4 tracking-tight text-foreground group-hover:text-primary transition-colors duration-300">{service.title}</h3>
-              <p className="text-foreground/50 leading-relaxed text-lg line-clamp-3">
+              <p className="text-muted-foreground leading-relaxed text-lg line-clamp-3">
                 {service.desc}
               </p>
 
