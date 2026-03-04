@@ -4,6 +4,8 @@ import { motion } from "motion/react";
 import { Cpu, Zap, Shield } from "lucide-react";
 import { BorderBeam } from "./BorderBeam";
 
+import innovativeRobotImg from "@/assets/products/innovative_robot.png";
+
 export function Products() {
   return (
     <Section id="products" className="bg-background relative overflow-hidden">
@@ -42,11 +44,10 @@ export function Products() {
           <div className="absolute -inset-4 bg-gradient-to-r from-primary to-purple-600 rounded-2xl blur-2xl opacity-10 group-hover:opacity-20 transition-opacity duration-500" />
           <div className="relative rounded-3xl overflow-hidden border border-border shadow-2xl">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1768323275769-6615e7cfcbe4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwcm9ib3QlMjBhcm0lMjBhdXRvbWF0aW9ufGVufDF8fHx8MTc3MDIwNDI0M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-              alt="Industrial Robotics"
+              src={innovativeRobotImg}
+              alt="AISOTOP Innovative Robot"
               className="w-full h-auto object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent pointer-events-none" />
           </div>
         </div>
       </div>
