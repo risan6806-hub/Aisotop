@@ -1,8 +1,36 @@
 import { Section } from "./Section";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { motion } from "motion/react";
-import { Cpu, Zap, Shield } from "lucide-react";
+import { Bot } from "lucide-react";
 import { BorderBeam } from "./BorderBeam";
+
+import intelliArmImg from "@/assets/products/intelli_arm.png";
+import omniDriveImg from "@/assets/products/omni_drive.png";
+import sentinelImg from "@/assets/products/sentinel.png";
+
+const products = [
+  {
+    name: "INTELLI-ARM X1",
+    tag: "AI Integrated",
+    desc: "Precision industrial robotic arm powered by advanced AI for complex manufacturing tasks.",
+    image: intelliArmImg,
+    delay: 0
+  },
+  {
+    name: "OMNI-DRIVE PRO",
+    tag: "High Efficiency",
+    desc: "High-speed autonomous mobile robot designed for maximum efficiency in smart logistics.",
+    image: omniDriveImg,
+    delay: 2
+  },
+  {
+    name: "SENTINEL V3",
+    tag: "Reliable",
+    desc: "Rugged all-weather inspection and monitoring robot built for extreme reliability in the field.",
+    image: sentinelImg,
+    delay: 4
+  }
+];
 
 export function Products() {
   return (
@@ -19,22 +47,37 @@ export function Products() {
             AISOTOP develops cool and intelligent robotics products integrated with AI to solve real-life challenges in automation, education, and industry.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
-            <div className="group relative bg-card p-6 rounded-2xl border border-border text-center hover:border-primary/30 transition-all overflow-hidden shadow-xl">
-              <BorderBeam size={100} duration={8} borderWidth={1.5} colorFrom="#00FFFF" colorTo="#8B5CF6" />
-              <Cpu className="mx-auto mb-4 text-primary group-hover:scale-110 transition-transform duration-300" size={32} />
-              <h4 className="font-bold text-foreground">AI Integrated</h4>
-            </div>
-            <div className="group relative bg-card p-6 rounded-2xl border border-border text-center hover:border-primary/30 transition-all overflow-hidden shadow-xl">
-              <BorderBeam size={100} duration={8} delay={2} borderWidth={1.5} colorFrom="#8B5CF6" colorTo="#00FFFF" />
-              <Zap className="mx-auto mb-4 text-primary group-hover:scale-110 transition-transform duration-300" size={32} />
-              <h4 className="font-bold text-foreground">High Efficiency</h4>
-            </div>
-            <div className="group relative bg-card p-6 rounded-2xl border border-border text-center hover:border-primary/30 transition-all overflow-hidden shadow-xl">
-              <BorderBeam size={100} duration={8} delay={4} borderWidth={1.5} colorFrom="#00FFFF" colorTo="#8B5CF6" />
-              <Shield className="mx-auto mb-4 text-primary group-hover:scale-110 transition-transform duration-300" size={32} />
-              <h4 className="font-bold text-foreground">Reliable</h4>
-            </div>
+          <div className="grid grid-cols-1 gap-6 pt-4">
+            {products.map((product, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group relative bg-card p-6 rounded-2xl border border-border flex flex-col sm:flex-row items-center gap-6 hover:border-primary/30 transition-all overflow-hidden shadow-xl"
+              >
+                <BorderBeam size={150} duration={8} delay={product.delay} borderWidth={1.5} colorFrom="#00FFFF" colorTo="#8B5CF6" />
+
+                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-xl overflow-hidden flex-shrink-0 border border-border group-hover:border-primary/50 transition-colors">
+                  <ImageWithFallback
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+
+                <div className="flex-1 text-center sm:text-left">
+                  <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-[10px] font-bold uppercase tracking-wider mb-2">
+                    {product.tag}
+                  </div>
+                  <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{product.name}</h4>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {product.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
 
