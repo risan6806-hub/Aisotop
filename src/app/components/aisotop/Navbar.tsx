@@ -54,7 +54,12 @@ export function Navbar() {
           whileHover={{ scale: 1.02 }}
         >
           <div className="relative flex items-center justify-center">
-            <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full scale-150 animate-pulse" />
+            {/* RGB Glow Effect */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-[-10px] bg-[conic-gradient(from_0deg,#ff0000,#ffff00,#00ff00,#00ffff,#0000ff,#ff00ff,#ff0000)] blur-xl opacity-40 rounded-full"
+            />
             <img src={logo} alt="AISOTOP Logo" className="h-10 w-auto filter brightness-110 relative z-10" />
           </div>
           <span className="text-2xl font-bold tracking-tight text-foreground relative z-10">AISOTOP</span>

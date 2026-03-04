@@ -1,6 +1,7 @@
 import { Section } from "./Section";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { Mail, MapPin, Phone, Globe } from "lucide-react";
+import { motion } from "motion/react";
 import logo from "figma:asset/48d643282720ccf0457972cedd4b1db2988d0ebb.png";
 
 export function Contact() {
@@ -25,7 +26,11 @@ export function Contact() {
                     <div className="col-span-1 md:col-span-2">
                         <div className="flex items-center gap-2 mb-6 group">
                             <div className="relative flex items-center justify-center">
-                                <div className="absolute inset-0 bg-blue-500/20 blur-lg rounded-full scale-125" />
+                                <motion.div
+                                    animate={{ rotate: 360 }}
+                                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                                    className="absolute inset-[-8px] bg-[conic-gradient(from_0deg,#ff0000,#ffff00,#00ff00,#00ffff,#0000ff,#ff00ff,#ff0000)] blur-lg opacity-40 rounded-full"
+                                />
                                 <img src={logo} alt="AISOTOP Logo" className="h-10 w-auto relative z-10" />
                             </div>
                             <h3 className="text-2xl font-bold text-white relative z-10">AISOTOP</h3>
