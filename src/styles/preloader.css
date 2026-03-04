@@ -46,7 +46,7 @@
 /* ===== Logo ===== */
 .preloader-logo {
     position: absolute;
-    width: 92%;
+    width: 90%;
     height: auto;
     object-fit: contain;
     z-index: 2;
