@@ -5,36 +5,50 @@ import { Bot, BrainCircuit, Factory, GraduationCap, Presentation, Wrench } from 
 import { motion } from "motion/react";
 import { BorderBeam } from "./BorderBeam";
 
+import physicalAiImg from "@/assets/services/physical_ai.png";
+import aiSmartSystemsImg from "@/assets/services/ai_smart_systems.png";
+import industrialAutomationImg from "@/assets/services/industrial_automation.png";
+import roboticsTrainingImg from "@/assets/services/robotics_training.png";
+import workshopsImg from "@/assets/services/workshops.png";
+import innovationImg from "@/assets/services/innovation.png";
+import { ImageWithFallback } from "../figma/ImageWithFallback";
+
 const services = [
   {
     icon: Bot,
     title: "Physical AI & Robotics",
     desc: "Bridging the gap between intelligent software and physical hardware.",
+    image: physicalAiImg
   },
   {
     icon: BrainCircuit,
     title: "AI Integrated Smart Systems",
     desc: "Intelligent systems that learn and adapt to solve complex problems.",
+    image: aiSmartSystemsImg
   },
   {
     icon: Factory,
     title: "Industrial & Custom Automation",
     desc: "Tailored automation solutions for streamlining industrial processes.",
+    image: industrialAutomationImg
   },
   {
     icon: GraduationCap,
     title: "Robotics Training for Schools",
     desc: "Empowering the next generation with practical robotics education.",
+    image: roboticsTrainingImg
   },
   {
     icon: Presentation,
     title: "Workshops for Colleges",
     desc: "Advanced workshops bridging the gap between theory and industry.",
+    image: workshopsImg
   },
   {
     icon: Wrench,
     title: "Hands-on Innovation Programs",
     desc: "Real-world project development and hands-on technical training.",
+    image: innovationImg
   },
 ];
 
@@ -83,7 +97,7 @@ export function Services() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-100px" }}
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10"
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10"
       >
         {services.map((service, index) => (
           <motion.div
@@ -91,28 +105,35 @@ export function Services() {
             variants={item}
             whileHover={{
               y: -10,
-              scale: 1.02,
+              scale: 1.01,
               transition: { duration: 0.3, ease: "easeOut" }
             }}
-            className="group relative bg-white/5 p-10 rounded-[2.5rem] border border-white/5 hover:border-primary/20 hover:bg-white/[0.08] transition-all overflow-hidden"
+            className="group relative bg-[#0a0a0b] rounded-[2.5rem] border border-white/5 hover:border-primary/30 transition-all overflow-hidden h-[520px] shadow-2xl"
           >
-            {index === 0 && <BorderBeam size={150} duration={8} borderWidth={2} colorFrom="#030213" colorTo="#333" />}
-            {/* Hover Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-            <div className="relative z-10">
-              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-background transition-all duration-500 transform group-hover:rotate-6">
-                <service.icon className="text-primary group-hover:text-background transition-colors duration-500" size={32} />
+            {/* Image Section */}
+            <div className="relative h-60 w-full overflow-hidden">
+              <ImageWithFallback
+                src={service.image}
+                alt={service.title}
+                className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/40 to-transparent opacity-80" />
+              <div className="absolute top-6 right-6 w-12 h-12 bg-primary/10 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/10 group-hover:bg-primary group-hover:text-background transition-all duration-500">
+                <service.icon className="text-primary group-hover:text-background transition-colors duration-500" size={24} />
               </div>
-              <h3 className="text-2xl font-bold mb-4 tracking-tight text-foreground">{service.title}</h3>
-              <p className="text-foreground/50 leading-relaxed text-lg">
-                {service.desc}
-              </p>
             </div>
 
-            {/* Decorative Icon on hover */}
-            <div className="absolute bottom-10 right-10 translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500">
-              <Bot className="text-primary/10" size={40} />
+            <BorderBeam size={250} duration={12} borderWidth={1.5} colorFrom="#00FFFF" colorTo="#8B5CF6" />
+
+            <div className="p-8 relative z-10">
+              <h3 className="text-2xl font-bold mb-4 tracking-tight text-foreground group-hover:text-primary transition-colors duration-300">{service.title}</h3>
+              <p className="text-foreground/50 leading-relaxed text-lg line-clamp-3">
+                {service.desc}
+              </p>
+
+              <div className="mt-8 flex items-center gap-2 text-sm font-bold text-primary opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-500">
+                EXPLORE SOLUTION <Bot size={16} />
+              </div>
             </div>
           </motion.div>
         ))}
