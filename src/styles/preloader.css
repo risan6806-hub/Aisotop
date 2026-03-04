@@ -30,118 +30,79 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2.5rem;
+    gap: 2rem;
 }
 
-/* ===== Logo ===== */
-.preloader-logo-wrapper {
+/* ===== Logo Container with Ring ===== */
+.preloader-logo-container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: clamp(220px, 32vw, 360px);
+    height: clamp(220px, 32vw, 360px);
 }
 
+/* ===== Logo ===== */
 .preloader-logo {
-    width: clamp(160px, 25vw, 280px);
+    position: absolute;
+    width: 65%;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 30px rgba(110, 78, 199, 0.5));
-    animation: logo-pulse 2s ease-in-out infinite;
+    z-index: 2;
+    filter: drop-shadow(0 0 20px rgba(110, 78, 199, 0.4));
 }
 
-@keyframes logo-pulse {
-
-    0%,
-    100% {
-        filter: drop-shadow(0 0 20px rgba(110, 78, 199, 0.4));
-    }
-
-    50% {
-        filter: drop-shadow(0 0 40px rgba(110, 78, 199, 0.7));
-    }
+/* ===== Rotating Ring ===== */
+.preloader-ring {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    animation: ring-rotate 1.8s linear infinite;
 }
 
-/* ===== Beam Loading Bar ===== */
-.preloader-beam-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    width: clamp(220px, 35vw, 360px);
-}
-
-.preloader-beam-track {
-    position: relative;
+.preloader-ring-svg {
     width: 100%;
-    height: 4px;
-    background: rgba(128, 128, 128, 0.2);
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(110, 78, 199, 0.1);
-    overflow: hidden;
-}
-
-/* Progress fill: gradient beam */
-.preloader-beam-fill {
-    position: absolute;
-    top: 0;
-    left: 0;
     height: 100%;
-    border-radius: 4px;
-    background: linear-gradient(90deg,
-            rgba(110, 78, 199, 0.3) 0%,
-            rgba(110, 78, 199, 0.7) 30%,
-            #6e4ec7 60%,
-            #9b6dff 100%);
-    box-shadow: 0 0 12px rgba(110, 78, 199, 0.6);
-    transition: width 0.08s linear;
 }
 
-/* Glow orb at the leading edge */
-.preloader-beam-glow {
+/* The actual gradient arc */
+.preloader-beam-arc {
+    transform-origin: center;
+}
+
+/* Glowing dot that follows the beam */
+.preloader-beam-dot {
     position: absolute;
-    top: 50%;
-    width: 32px;
-    height: 32px;
+    top: -2px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(circle,
-            rgba(155, 109, 255, 1) 0%,
-            rgba(110, 78, 199, 0.6) 40%,
-            transparent 70%);
-    filter: blur(5px);
-    pointer-events: none;
-    transition: left 0.08s linear;
+    background: #b08dff;
+    transform: translateX(-50%);
+    box-shadow:
+        0 0 10px rgba(155, 109, 255, 0.9),
+        0 0 25px rgba(155, 109, 255, 0.6),
+        0 0 50px rgba(110, 78, 199, 0.3);
 }
 
-/* Shimmer sweep across the track */
-.preloader-beam-shimmer {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg,
-            transparent 0%,
-            rgba(255, 255, 255, 0.15) 50%,
-            transparent 100%);
-    animation: shimmer-sweep 2s ease-in-out infinite;
-}
-
-@keyframes shimmer-sweep {
+@keyframes ring-rotate {
     0% {
-        left: -100%;
+        transform: rotate(0deg);
     }
 
     100% {
-        left: 100%;
+        transform: rotate(360deg);
     }
 }
 
 /* ===== Percentage Text ===== */
 .preloader-percentage {
     font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 400;
     color: var(--muted-foreground);
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin-top: 0.5rem;
 }
