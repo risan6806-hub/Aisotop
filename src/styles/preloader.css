@@ -1,4 +1,3 @@
-/* ===== Preloader Base ===== */
 .preloader {
     position: fixed;
     inset: 0;
@@ -6,23 +5,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--background);
+    background-color: #000;
     overflow: hidden;
+    /* Grid background */
+    background-image:
+        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
 }
 
-.preloader-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.preloader-panel {
-    flex: 1;
-    width: 100%;
-    background-color: var(--background);
-    transform-origin: top;
-}
 
 .preloader-content {
     position: relative;
@@ -33,58 +24,78 @@
     gap: 2rem;
 }
 
-/* ===== Logo Container with Ring ===== */
+/* ===== Calibration Box (was Logo Container) ===== */
 .preloader-logo-container {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: clamp(450px, 65vw, 900px);
-    height: clamp(450px, 65vw, 900px);
+    width: clamp(450px, 65vw, 850px);
+    height: clamp(250px, 35vw, 450px);
+    /* Rectangular */
+    border: 1px dashed rgba(0, 255, 255, 0.3);
+    padding: 2rem;
+    background: rgba(0, 255, 255, 0.02);
+}
+
+.preloader-calibration-text {
+    position: absolute;
+    top: -1.5rem;
+    left: 0;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #00FFFF;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.preloader-tech-numbers {
+    position: absolute;
+    bottom: -1.5rem;
+    right: 0;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #00FFFF;
+    opacity: 0.6;
 }
 
 /* ===== Logo ===== */
 .preloader-logo {
-    position: absolute;
-    width: 90%;
+    width: 65%;
     height: auto;
     object-fit: contain;
     z-index: 2;
-    filter: drop-shadow(0 0 35px rgba(110, 78, 199, 0.4));
+    filter: drop-shadow(0 0 45px rgba(0, 255, 255, 0.4));
 }
 
-/* ===== Rotating Ring ===== */
-.preloader-ring {
+/* ===== Rectangular Beam (using BorderBeam-like logic) ===== */
+.preloader-beam-container {
     position: absolute;
-    inset: 0;
-    z-index: 1;
-    animation: ring-rotate 1.8s linear infinite;
+    inset: -1px;
+    border-radius: 0;
+    pointer-events: none;
+    overflow: hidden;
 }
 
-.preloader-ring-svg {
-    width: 100%;
-    height: 100%;
-}
-
-/* The actual gradient arc */
-.preloader-beam-arc {
-    transform-origin: center;
-}
-
-/* Glowing dot that follows the beam */
-.preloader-beam-dot {
+.preloader-beam {
     position: absolute;
-    top: -2px;
-    left: 50%;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #b08dff;
-    transform: translateX(-50%);
-    box-shadow:
-        0 0 10px rgba(155, 109, 255, 0.9),
-        0 0 25px rgba(155, 109, 255, 0.6),
-        0 0 50px rgba(110, 78, 199, 0.3);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(to right, transparent, #00FFFF, #00FFFF, transparent);
+    offset-path: rect(0 100% 100% 0 round 0);
+    animation: beam-travel 2.5s linear infinite;
+    filter: blur(1px) drop-shadow(0 0 10px #00FFFF);
+}
+
+@keyframes beam-travel {
+    0% {
+        offset-distance: 0%;
+    }
+
+    100% {
+        offset-distance: 100%;
+    }
 }
 
 @keyframes ring-rotate {

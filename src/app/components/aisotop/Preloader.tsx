@@ -35,82 +35,27 @@ export function Preloader({ onLoadingComplete }: PreloaderProps) {
             initial={{ opacity: 1 }}
             exit={{
                 opacity: 0,
+                scale: 1.1,
                 transition: {
-                    duration: 0.6,
+                    duration: 0.8,
                     ease: [0.76, 0, 0.24, 1],
                 },
             }}
         >
-            {/* Background Panels for Curtain Reveal */}
-            <div className="preloader-overlay">
-                {[...Array(5)].map((_, i) => (
-                    <motion.div
-                        key={i}
-                        className="preloader-panel"
-                        initial={{ scaleY: 1 }}
-                        exit={{
-                            scaleY: 0,
-                            transition: {
-                                duration: 0.8,
-                                ease: [0.76, 0, 0.24, 1],
-                                delay: i * 0.05,
-                            },
-                        }}
-                    />
-                ))}
-            </div>
 
             <div className="preloader-content">
-                {/* Logo with rotating beam ring */}
+                {/* Calibration Box */}
                 <motion.div
                     className="preloader-logo-container"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+                    initial={{ opacity: 0, scale: 0.9, rotateX: 20 }}
+                    animate={{ opacity: 1, scale: 1, rotateX: 0 }}
+                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 >
-                    {/* Rotating gradient ring */}
-                    <div className="preloader-ring">
-                        <svg viewBox="0 0 200 200" className="preloader-ring-svg">
-                            <defs>
-                                <linearGradient id="beam-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stopColor="#b08dff" stopOpacity="1" />
-                                    <stop offset="30%" stopColor="#9b6dff" stopOpacity="0.9" />
-                                    <stop offset="60%" stopColor="#6e4ec7" stopOpacity="0.4" />
-                                    <stop offset="100%" stopColor="#462e82" stopOpacity="0" />
-                                </linearGradient>
-                                <filter id="glow">
-                                    <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-                                    <feMerge>
-                                        <feMergeNode in="coloredBlur" />
-                                        <feMergeNode in="SourceGraphic" />
-                                    </feMerge>
-                                </filter>
-                            </defs>
-                            {/* Track ring (subtle) */}
-                            <circle
-                                cx="100"
-                                cy="100"
-                                r="90"
-                                fill="none"
-                                stroke="rgba(110, 78, 199, 0.15)"
-                                strokeWidth="2.5"
-                            />
-                            {/* Animated beam arc */}
-                            <circle
-                                cx="100"
-                                cy="100"
-                                r="90"
-                                fill="none"
-                                stroke="url(#beam-gradient)"
-                                strokeWidth="3.5"
-                                strokeLinecap="round"
-                                strokeDasharray="140 425"
-                                filter="url(#glow)"
-                                className="preloader-beam-arc"
-                            />
-                        </svg>
-                        {/* Glowing dot at the leading edge */}
-                        <div className="preloader-beam-dot" />
+                    <div className="preloader-calibration-text">System Calibration: AISOTOP_CORE</div>
+
+                    {/* Perimeter Beam */}
+                    <div className="preloader-beam-container">
+                        <div className="preloader-beam" />
                     </div>
 
                     {/* Logo image */}
@@ -119,16 +64,20 @@ export function Preloader({ onLoadingComplete }: PreloaderProps) {
                         alt="AISOTOP"
                         className="preloader-logo"
                     />
+
+                    <div className="preloader-tech-numbers">
+                        TR-29.04 // MOD-83 // CALIB_{progress}%
+                    </div>
                 </motion.div>
 
                 {/* Percentage */}
                 <motion.div
                     className="preloader-percentage"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
                 >
-                    {String(progress).padStart(3, '0')}%
+                    {String(progress).padStart(2, '0')}
                 </motion.div>
             </div>
         </motion.div>
