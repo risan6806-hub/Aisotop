@@ -39,18 +39,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: clamp(220px, 32vw, 360px);
-    height: clamp(220px, 32vw, 360px);
+    width: clamp(450px, 65vw, 900px);
+    height: clamp(450px, 65vw, 900px);
 }
 
 /* ===== Logo ===== */
 .preloader-logo {
     position: absolute;
-    width: 65%;
+    width: 92%;
     height: auto;
     object-fit: contain;
     z-index: 2;
-    filter: drop-shadow(0 0 20px rgba(110, 78, 199, 0.4));
+    filter: drop-shadow(0 0 35px rgba(110, 78, 199, 0.4));
 }
 
 /* ===== Rotating Ring ===== */
@@ -100,9 +100,10 @@
 /* ===== Percentage Text ===== */
 .preloader-percentage {
     font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 400;
+    font-size: 1.1rem;
+    font-weight: 500;
     color: var(--muted-foreground);
-    letter-spacing: 0.3em;
+    letter-spacing: 0.2em;
     margin-top: 0.5rem;
+    font-variant-numeric: tabular-nums;
 }

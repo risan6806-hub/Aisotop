@@ -79,7 +79,7 @@ export function Preloader({ onLoadingComplete }: PreloaderProps) {
                                     <stop offset="100%" stopColor="#462e82" stopOpacity="0" />
                                 </linearGradient>
                                 <filter id="glow">
-                                    <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                                    <feGaussianBlur stdDeviation="6" result="coloredBlur" />
                                     <feMerge>
                                         <feMergeNode in="coloredBlur" />
                                         <feMergeNode in="SourceGraphic" />
@@ -93,7 +93,7 @@ export function Preloader({ onLoadingComplete }: PreloaderProps) {
                                 r="90"
                                 fill="none"
                                 stroke="rgba(110, 78, 199, 0.15)"
-                                strokeWidth="2.5"
+                                strokeWidth="3"
                             />
                             {/* Animated beam arc */}
                             <circle
@@ -102,7 +102,7 @@ export function Preloader({ onLoadingComplete }: PreloaderProps) {
                                 r="90"
                                 fill="none"
                                 stroke="url(#beam-gradient)"
-                                strokeWidth="3.5"
+                                strokeWidth="6"
                                 strokeLinecap="round"
                                 strokeDasharray="140 425"
                                 filter="url(#glow)"
@@ -128,7 +128,7 @@ export function Preloader({ onLoadingComplete }: PreloaderProps) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                    {progress}%
+                    {String(progress).padStart(3, '0')}%
                 </motion.div>
             </div>
         </motion.div>
