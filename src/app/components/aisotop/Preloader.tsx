@@ -56,15 +56,15 @@ export function Preloader({ onLoadingComplete }: PreloaderProps) {
                         preserveAspectRatio="xMidYMid meet"
                     >
                         <defs>
-                            {/* Art Deco striped pattern */}
+                            {/* Art Deco striped pattern for dark theme */}
                             <pattern
                                 id="stripe-pattern"
                                 patternUnits="userSpaceOnUse"
                                 width="100"
                                 height="6"
                             >
-                                <rect width="100" height="3.5" fill="rgba(130, 120, 155, 0.6)" />
-                                <rect y="3.5" width="100" height="2.5" fill="rgba(130, 120, 155, 0)" />
+                                <rect width="100" height="3.5" fill="rgba(180, 170, 255, 0.85)" />
+                                <rect y="3.5" width="100" height="2.5" fill="rgba(0, 0, 0, 0)" />
                             </pattern>
                         </defs>
                         <text
