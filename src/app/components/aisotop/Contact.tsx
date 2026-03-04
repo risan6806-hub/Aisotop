@@ -23,9 +23,12 @@ export function Contact() {
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 border-t border-gray-800 pt-12">
                     <div className="col-span-1 md:col-span-2">
-                        <div className="flex items-center gap-2 mb-6">
-                            <img src={logo} alt="AISOTOP Logo" className="h-10 w-auto" />
-                            <h3 className="text-2xl font-bold text-white">AISOTOP</h3>
+                        <div className="flex items-center gap-2 mb-6 group">
+                            <div className="relative flex items-center justify-center">
+                                <div className="absolute inset-0 bg-blue-500/20 blur-lg rounded-full scale-125" />
+                                <img src={logo} alt="AISOTOP Logo" className="h-10 w-auto relative z-10" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-white relative z-10">AISOTOP</h3>
                         </div>
                         <p className="text-gray-400 max-w-sm mb-6">
                             Leading the way in Physical AI, Robotics, and Automation solutions for a smarter tomorrow.

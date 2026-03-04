@@ -50,11 +50,14 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         <motion.a
           href="#home"
-          className="flex items-center gap-3 group"
+          className="flex items-center gap-3 group px-4"
           whileHover={{ scale: 1.02 }}
         >
-          <img src={logo} alt="AISOTOP Logo" className="h-10 w-auto filter brightness-110" />
-          <span className="text-2xl font-bold tracking-tight text-foreground">AISOTOP</span>
+          <div className="relative flex items-center justify-center">
+            <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full scale-150 animate-pulse" />
+            <img src={logo} alt="AISOTOP Logo" className="h-10 w-auto filter brightness-110 relative z-10" />
+          </div>
+          <span className="text-2xl font-bold tracking-tight text-foreground relative z-10">AISOTOP</span>
         </motion.a>
 
         {/* Desktop Menu */}
