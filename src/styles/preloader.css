@@ -1,51 +1,147 @@
+/* ===== Preloader Base ===== */
 .preloader {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: var(--background);
+    inset: 0;
     z-index: 10000;
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding: 3rem;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background);
     overflow: hidden;
 }
 
-.preloader-counter {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(2rem, 8vw, 6rem);
-    font-weight: 300;
-    line-height: 1;
-    color: var(--foreground);
+.preloader-overlay {
+    position: absolute;
+    inset: 0;
     display: flex;
-    align-items: baseline;
+    flex-direction: column;
+}
+
+.preloader-panel {
+    flex: 1;
+    width: 100%;
+    background-color: var(--background);
+    transform-origin: top;
+}
+
+.preloader-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+/* ===== Logo ===== */
+.preloader-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preloader-logo {
+    width: clamp(160px, 25vw, 280px);
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 30px rgba(110, 78, 199, 0.5));
+    animation: logo-pulse 2s ease-in-out infinite;
+}
+
+@keyframes logo-pulse {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 20px rgba(110, 78, 199, 0.4));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 40px rgba(110, 78, 199, 0.7));
+    }
+}
+
+/* ===== Beam Loading Bar ===== */
+.preloader-beam-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: clamp(220px, 35vw, 360px);
+}
+
+.preloader-beam-track {
+    position: relative;
+    width: 100%;
+    height: 4px;
+    background: rgba(128, 128, 128, 0.2);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(110, 78, 199, 0.1);
     overflow: hidden;
-    letter-spacing: -0.05em;
 }
 
-.preloader-counter span {
-    display: inline-block;
-}
-
-.preloader-brand {
+/* Progress fill: gradient beam */
+.preloader-beam-fill {
     position: absolute;
-    top: 3rem;
-    left: 3rem;
-    font-weight: 400;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--muted-foreground);
-}
-
-.preloader-line {
-    position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
-    height: 1px;
-    background-color: var(--primary);
-    opacity: 0.5;
-    transition: width 0.1s linear;
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg,
+            rgba(110, 78, 199, 0.3) 0%,
+            rgba(110, 78, 199, 0.7) 30%,
+            #6e4ec7 60%,
+            #9b6dff 100%);
+    box-shadow: 0 0 12px rgba(110, 78, 199, 0.6);
+    transition: width 0.08s linear;
+}
+
+/* Glow orb at the leading edge */
+.preloader-beam-glow {
+    position: absolute;
+    top: 50%;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle,
+            rgba(155, 109, 255, 1) 0%,
+            rgba(110, 78, 199, 0.6) 40%,
+            transparent 70%);
+    filter: blur(5px);
+    pointer-events: none;
+    transition: left 0.08s linear;
+}
+
+/* Shimmer sweep across the track */
+.preloader-beam-shimmer {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.15) 50%,
+            transparent 100%);
+    animation: shimmer-sweep 2s ease-in-out infinite;
+}
+
+@keyframes shimmer-sweep {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+/* ===== Percentage Text ===== */
+.preloader-percentage {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--muted-foreground);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
 }

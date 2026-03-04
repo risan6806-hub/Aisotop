@@ -1,26 +1,30 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "@/styles/preloader.css";
+import logoPrimary from "@/assets/logo_primary.png";
 
 interface PreloaderProps {
     onLoadingComplete: () => void;
 }
 
 export function Preloader({ onLoadingComplete }: PreloaderProps) {
-    const [counter, setCounter] = useState(0);
+    const [progress, setProgress] = useState(0);
 
     useEffect(() => {
+        let current = 0;
         const interval = setInterval(() => {
-            setCounter((prev) => {
-                if (prev >= 100) {
-                    clearInterval(interval);
-                    setTimeout(onLoadingComplete, 600);
-                    return 100;
-                }
-                const next = prev + Math.floor(Math.random() * 8) + 1;
-                return next > 100 ? 100 : next;
-            });
-        }, 40);
+            const increment = Math.floor(Math.random() * 5) + 1;
+            current += increment;
+
+            if (current >= 100) {
+                current = 100;
+                setProgress(100);
+                clearInterval(interval);
+                setTimeout(onLoadingComplete, 800);
+            } else {
+                setProgress(current);
+            }
+        }, 30);
 
         return () => clearInterval(interval);
     }, [onLoadingComplete]);
@@ -31,35 +35,79 @@ export function Preloader({ onLoadingComplete }: PreloaderProps) {
             initial={{ opacity: 1 }}
             exit={{
                 opacity: 0,
-                y: -20,
-                transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1] }
+                transition: {
+                    duration: 0.6,
+                    ease: [0.76, 0, 0.24, 1],
+                },
             }}
         >
-            <div className="preloader-brand">
-                <motion.span
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8 }}
-                >
-                    AISOTOP™ / LOADING
-                </motion.span>
+            {/* Background Panels for Curtain Reveal */}
+            <div className="preloader-overlay">
+                {[...Array(5)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="preloader-panel"
+                        initial={{ scaleY: 1 }}
+                        exit={{
+                            scaleY: 0,
+                            transition: {
+                                duration: 0.8,
+                                ease: [0.76, 0, 0.24, 1],
+                                delay: i * 0.05,
+                            },
+                        }}
+                    />
+                ))}
             </div>
 
-            <div className="preloader-counter">
-                <motion.span
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
+            <div className="preloader-content">
+                {/* Logo */}
+                <motion.div
+                    className="preloader-logo-wrapper"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
                 >
-                    {counter}
-                </motion.span>
-                <span className="text-[0.4em] ml-1 opacity-50">%</span>
-            </div>
+                    <img
+                        src={logoPrimary}
+                        alt="AISOTOP"
+                        className="preloader-logo"
+                    />
+                </motion.div>
 
-            <div
-                className="preloader-line"
-                style={{ width: `${counter}%` }}
-            />
+                {/* Beam Loading Bar */}
+                <motion.div
+                    className="preloader-beam-container"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                    <div className="preloader-beam-track">
+                        {/* Progress fill */}
+                        <motion.div
+                            className="preloader-beam-fill"
+                            style={{ width: `${progress}%` }}
+                        />
+                        {/* Animated beam glow at the leading edge */}
+                        <motion.div
+                            className="preloader-beam-glow"
+                            style={{ left: `${progress}%` }}
+                        />
+                        {/* Shimmer sweep effect */}
+                        <div className="preloader-beam-shimmer" />
+                    </div>
+
+                    {/* Percentage */}
+                    <motion.div
+                        className="preloader-percentage"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                    >
+                        {progress}%
+                    </motion.div>
+                </motion.div>
+            </div>
         </motion.div>
     );
 }
