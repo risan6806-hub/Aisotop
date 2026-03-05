@@ -51,9 +51,9 @@ export default function App() {
             <Products />
             <Unique />
             <Education />
+            <Team />
             <Contribution />
             <StudentProjects />
-            <Team />
             <Contact />
           </main>
         </div>
