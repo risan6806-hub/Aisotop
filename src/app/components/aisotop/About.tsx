@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { Section } from "./Section";
 import { CheckCircle2 } from "lucide-react";
+import aisotopFullLogo from "@/assets/aisotop_full_logo.svg";
 
 export function About() {
   return (
@@ -58,10 +59,15 @@ export function About() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="relative p-8 rounded-[2.5rem] bg-foreground/5 border border-foreground/5 overflow-hidden"
+            className="relative p-8 rounded-[2.5rem] bg-foreground/5 border border-foreground/5 overflow-hidden flex flex-col items-center justify-center gap-8"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] -z-10" />
-            <p className="text-lg text-foreground/40 leading-relaxed max-w-lg relative z-10 italic">
+            <img
+              src={aisotopFullLogo}
+              alt="AISOTOP - Empowering the Future with AI"
+              className="w-64 md:w-80 h-auto relative z-10 dark:invert dark:brightness-200"
+            />
+            <p className="text-lg text-foreground/40 leading-relaxed max-w-lg relative z-10 italic text-center">
               "We combine Robotics, Artificial Intelligence, and Automation to build practical and impactful solutions for industries, institutions, and society."
             </p>
           </motion.div>
