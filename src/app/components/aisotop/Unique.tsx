@@ -54,7 +54,7 @@ export function Unique() {
             alt="AISOTOP Uniqueness - Standing Out"
             className="w-full h-full object-cover grayscale-[0.4] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-[1.05]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-700" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-background/10 to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-700" />
           <div className="absolute bottom-10 left-10 right-10 space-y-2">
             <div className="text-primary text-[10px] font-black uppercase tracking-[0.4em]">
               The AISOTOP Difference

@@ -73,7 +73,7 @@ export function Contribution() {
                 alt={item.title}
                 className={`w-full ${item.autoHeight ? "h-auto" : "h-full object-cover"} transition-transform duration-500 group-hover:scale-105 ${item.position}`}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent flex flex-col justify-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-background/10 to-transparent flex flex-col justify-end p-6">
                 <h3 className="text-xl font-bold text-foreground mb-1">
                   {item.title}
                 </h3>

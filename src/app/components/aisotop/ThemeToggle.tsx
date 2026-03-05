@@ -48,8 +48,8 @@ export function ThemeToggle() {
                         <path
                             d="M6 0 H22 L28 16 H0 Z"
                             className={`transition-all duration-500 ${isLight
-                                    ? "fill-amber-100 stroke-amber-300"
-                                    : "fill-gray-600 stroke-gray-500"
+                                ? "fill-amber-100 stroke-amber-300"
+                                : "fill-gray-600 stroke-gray-500"
                                 }`}
                             strokeWidth="0.5"
                         />
@@ -73,8 +73,8 @@ export function ThemeToggle() {
                 <motion.div
                     className="absolute -bottom-1 left-1/2 -translate-x-1/2 rounded-full pointer-events-none"
                     animate={{
-                        opacity: isLight ? [0.6, 0.9, 0.6] : 0,
-                        scale: isLight ? [1, 1.15, 1] : 0.5,
+                        opacity: isLight ? [0.3, 0.5, 0.3] : 0,
+                        scale: isLight ? [0.8, 1, 0.8] : 0.5,
                     }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     style={{
@@ -88,7 +88,7 @@ export function ThemeToggle() {
                 <motion.div
                     className="absolute top-[14px] left-1/2 -translate-x-1/2 pointer-events-none"
                     animate={{
-                        opacity: isLight ? 0.3 : 0,
+                        opacity: isLight ? 0.15 : 0,
                     }}
                     transition={{ duration: 0.5 }}
                     style={{
@@ -136,8 +136,8 @@ export function ThemeToggle() {
                 {/* String knob */}
                 <motion.div
                     className={`rounded-full transition-all duration-500 ${isLight
-                            ? "bg-amber-500 shadow-[0_0_4px_rgba(251,191,36,0.4)]"
-                            : "bg-gray-400 shadow-[0_0_2px_rgba(156,163,175,0.3)]"
+                        ? "bg-amber-500 shadow-[0_0_4px_rgba(251,191,36,0.4)]"
+                        : "bg-gray-400 shadow-[0_0_2px_rgba(156,163,175,0.3)]"
                         }`}
                     style={{ width: 5, height: 5 }}
                     whileHover={{ scale: 1.4 }}
