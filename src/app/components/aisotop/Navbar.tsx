@@ -3,6 +3,7 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/
 import { Menu, X } from "lucide-react";
 import logo from "figma:asset/48d643282720ccf0457972cedd4b1db2988d0ebb.png";
 import { ThemeToggle } from "./ThemeToggle";
+import { BorderBeam } from "./BorderBeam";
 
 const links = [
   { name: "Home", href: "#home" },
@@ -88,9 +89,10 @@ export function Navbar() {
             variants={item}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 py-2.5 rounded-full bg-foreground text-background text-sm font-semibold transition-all hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+            className="relative overflow-hidden px-6 py-2.5 rounded-full bg-foreground text-background text-sm font-semibold transition-all hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
           >
             Get in Touch
+            <BorderBeam size={60} duration={4} borderWidth={2} colorFrom="#00FFFF" colorTo="#8B5CF6" />
           </motion.a>
           <ThemeToggle />
         </motion.div>
