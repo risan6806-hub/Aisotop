@@ -58,7 +58,7 @@ export function Navbar() {
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-[-10px] bg-[conic-gradient(from_0deg,#ff0000,#ffff00,#00ff00,#00ffff,#0000ff,#ff00ff,#ff0000)] blur-xl opacity-40 rounded-full"
+              className="absolute inset-[-10px] bg-[conic-gradient(from_0deg,#3B1F7B,#6B3FA0,#9B59B6,#6B3FA0,#3B1F7B,#2A1058,#3B1F7B)] blur-xl opacity-50 rounded-full"
             />
             <img src={logo} alt="AISOTOP Logo" className="h-10 w-auto filter brightness-110 relative z-10" />
           </div>
