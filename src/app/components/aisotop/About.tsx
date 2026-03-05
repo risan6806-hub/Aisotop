@@ -65,7 +65,7 @@ export function About() {
             <img
               src={aisotopFullLogo}
               alt="AISOTOP - Empowering the Future with AI"
-              className="w-64 md:w-80 h-auto relative z-10 dark:invert dark:brightness-200"
+              className="w-64 md:w-80 h-auto relative z-10 dark:brightness-0 dark:invert"
             />
             <p className="text-lg text-foreground/40 leading-relaxed max-w-lg relative z-10 italic text-center">
               "We combine Robotics, Artificial Intelligence, and Automation to build practical and impactful solutions for industries, institutions, and society."

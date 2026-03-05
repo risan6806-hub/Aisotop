@@ -123,7 +123,14 @@ export function Services() {
               </div>
             </div>
 
-            <BorderBeam size={250} duration={12} borderWidth={1.5} colorFrom="#00FFFF" colorTo="#8B5CF6" />
+            <BorderBeam
+              size={[200, 280, 220, 300, 180, 260][index % 6]}
+              duration={[10, 14, 8, 16, 11, 13][index % 6]}
+              delay={[0, 3, 7, 1, 5, 9][index % 6]}
+              borderWidth={1.5}
+              colorFrom={index % 2 === 0 ? "#00FFFF" : "#8B5CF6"}
+              colorTo={index % 2 === 0 ? "#8B5CF6" : "#00FFFF"}
+            />
 
             <div className="p-8 relative z-10">
               <h3 className="text-2xl font-bold mb-4 tracking-tight text-foreground group-hover:text-primary transition-colors duration-300">{service.title}</h3>
