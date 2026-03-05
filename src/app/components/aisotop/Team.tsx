@@ -47,7 +47,7 @@ export function Team() {
                     </p>
                 </div>
                 <div className="w-32 h-32 rounded-full bg-card flex items-center justify-center p-0 shadow-2xl overflow-hidden border-4 border-primary/20 relative">
-                    <BorderBeam size={128} duration={10} borderWidth={4} colorFrom="#030213" colorTo="#030213" />
+                    <BorderBeam size={128} duration={10} borderWidth={4} colorFrom="#00FFFF" colorTo="#8B5CF6" />
                     <img
                         src={logoPrimary}
                         alt="AISOTOP Logo"

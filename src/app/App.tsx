@@ -14,13 +14,16 @@ import { Contact } from "./components/aisotop/Contact";
 import { Team } from "./components/aisotop/Team";
 import { ThemeProvider } from "./components/aisotop/ThemeProvider";
 import { Preloader } from "./components/aisotop/Preloader";
+import { ThemeChooser } from "./components/aisotop/ThemeChooser";
 import { AnimatePresence } from "framer-motion";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isChoosingTheme, setIsChoosingTheme] = useState(false);
+  const [showSite, setShowSite] = useState(false);
 
   useEffect(() => {
-    if (isLoading) return;
+    if (!showSite) return;
 
     const lenis = new Lenis();
     function raf(time: number) {
@@ -29,17 +32,31 @@ export default function App() {
     }
     requestAnimationFrame(raf);
     return () => lenis.destroy();
-  }, [isLoading]);
+  }, [showSite]);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+    setIsChoosingTheme(true);
+  };
+
+  const handleThemeSelected = () => {
+    setIsChoosingTheme(false);
+    setShowSite(true);
+  };
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
       <AnimatePresence mode="wait">
         {isLoading && (
-          <Preloader key="preloader" onLoadingComplete={() => setIsLoading(false)} />
+          <Preloader key="preloader" onLoadingComplete={handleLoadingComplete} />
         )}
       </AnimatePresence>
 
-      {!isLoading && (
+      {isChoosingTheme && (
+        <ThemeChooser onThemeSelected={handleThemeSelected} />
+      )}
+
+      {showSite && (
         <div className="bg-background min-h-screen relative text-foreground selection:bg-primary selection:text-primary-foreground">
           <div className="noise-overlay" />
           <Navbar />
