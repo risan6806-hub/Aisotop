@@ -44,13 +44,13 @@ const contributions = [
 
 export function Contribution() {
   return (
-    <Section id="contribution" className="bg-slate-50">
+    <Section id="contribution">
       <div className="space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
             Our Contribution
           </h2>
-          <p className="text-lg text-slate-600">
+          <p className="text-lg text-muted-foreground">
             Over the years, we have conducted numerous workshops
             and classes, mentoring students and guiding them to
             build innovative projects like drones and autonomous

@@ -45,7 +45,7 @@ export function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? "bg-background/80 backdrop-blur-xl border-b border-white/5 py-4" : "bg-transparent py-8"
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? "bg-background/80 backdrop-blur-xl border-b border-foreground/5 py-4" : "bg-transparent py-8"
         }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">

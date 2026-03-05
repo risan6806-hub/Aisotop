@@ -14,7 +14,7 @@ export function Education() {
   return (
     <Section id="education">
       <div className="flex flex-col-reverse lg:flex-row gap-16 items-center">
-        <div className="lg:w-1/2 relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
+        <div className="lg:w-1/2 relative rounded-2xl overflow-hidden shadow-2xl border border-foreground/10 group">
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop"
             alt="Robotics Education in Schools and Colleges"
@@ -40,7 +40,7 @@ export function Education() {
 
           <div className="grid sm:grid-cols-2 gap-6">
             {features.map((feature, idx) => (
-              <div key={idx} className="flex flex-col gap-3 p-4 bg-white/5 border border-white/5 rounded-xl hover:border-primary/20 transition-colors">
+              <div key={idx} className="flex flex-col gap-3 p-4 bg-foreground/5 border border-foreground/5 rounded-xl hover:border-primary/20 transition-colors">
                 <feature.icon className="text-primary" size={28} />
                 <div>
                   <h4 className="font-bold text-foreground">{feature.title}</h4>

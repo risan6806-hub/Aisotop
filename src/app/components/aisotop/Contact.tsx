@@ -6,7 +6,7 @@ import logo from "figma:asset/48d643282720ccf0457972cedd4b1db2988d0ebb.png";
 
 export function Contact() {
     return (
-        <footer id="contact" className="relative bg-slate-950 text-white py-20 px-4 md:px-12 lg:px-24 overflow-hidden">
+        <footer id="contact" className="relative bg-background text-foreground py-20 px-4 md:px-12 lg:px-24 overflow-hidden border-t border-border">
             {/* Background */}
             <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
                 <ImageWithFallback
@@ -19,10 +19,10 @@ export function Contact() {
             <div className="relative z-10 max-w-7xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold mb-4">Let’s Build the Future Together</h2>
-                    <p className="text-xl text-gray-400">Transforming ideas into intelligent Physical AI & robotic solutions.</p>
+                    <p className="text-xl text-muted-foreground">Transforming ideas into intelligent Physical AI & robotic solutions.</p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 border-t border-gray-800 pt-12">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 border-t border-border pt-12">
                     <div className="col-span-1 md:col-span-2">
                         <div className="flex items-center gap-2 mb-6 group">
                             <div className="relative flex items-center justify-center">
@@ -33,22 +33,22 @@ export function Contact() {
                                 />
                                 <img src={logo} alt="AISOTOP Logo" className="h-10 w-auto relative z-10" />
                             </div>
-                            <h3 className="text-2xl font-bold text-white relative z-10">AISOTOP</h3>
+                            <h3 className="text-2xl font-bold text-foreground relative z-10">AISOTOP</h3>
                         </div>
-                        <p className="text-gray-400 max-w-sm mb-6">
+                        <p className="text-muted-foreground max-w-sm mb-6">
                             Leading the way in Physical AI, Robotics, and Automation solutions for a smarter tomorrow.
                         </p>
                         <div className="flex gap-4">
                             {/* Social placeholders */}
-                            <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer">
+                            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
                                 <Globe size={20} />
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <h4 className="font-bold text-white mb-6">Services</h4>
-                        <ul className="space-y-3 text-gray-400">
+                        <h4 className="font-bold text-foreground mb-6">Services</h4>
+                        <ul className="space-y-3 text-muted-foreground">
                             <li>Physical AI & Robotics</li>
                             <li>Automation Systems</li>
                             <li>Industry Solutions</li>
@@ -57,39 +57,39 @@ export function Contact() {
                     </div>
 
                     <div>
-                        <h4 className="font-bold text-white mb-6">Contact Us</h4>
-                        <ul className="space-y-4 text-gray-400">
+                        <h4 className="font-bold text-foreground mb-6">Contact Us</h4>
+                        <ul className="space-y-4 text-muted-foreground">
                             <li className="flex items-start gap-3">
-                                <Phone size={18} className="text-blue-500 mt-1" />
+                                <Phone size={18} className="text-primary mt-1" />
                                 <div className="flex flex-col">
-                                    <a href="tel:+919074702722" className="hover:text-blue-400 transition-colors">+91 90747 02722</a>
-                                    <a href="tel:+919745815897" className="hover:text-blue-400 transition-colors">+91 97458 15897</a>
+                                    <a href="tel:+919074702722" className="hover:text-primary transition-colors">+91 90747 02722</a>
+                                    <a href="tel:+919745815897" className="hover:text-primary transition-colors">+91 97458 15897</a>
                                 </div>
                             </li>
                             <li className="flex items-start gap-3">
-                                <Mail size={18} className="text-blue-500 mt-1" />
+                                <Mail size={18} className="text-primary mt-1" />
                                 <div className="flex flex-col">
                                     <a
                                         href="mailto:info@aisotop.com"
-                                        className="hover:text-blue-400 transition-colors"
+                                        className="hover:text-primary transition-colors"
                                     >
                                         info@aisotop.com
                                     </a>
                                     <a
                                         href="mailto:aisotop.robotics@gmail.com"
-                                        className="hover:text-blue-400 transition-colors"
+                                        className="hover:text-primary transition-colors"
                                     >
                                         aisotop.robotics@gmail.com
                                     </a>
                                 </div>
                             </li>
                             <li className="flex items-start gap-3">
-                                <MapPin size={18} className="text-blue-500 mt-1 shrink-0" />
+                                <MapPin size={18} className="text-primary mt-1 shrink-0" />
                                 <a
                                     href="https://maps.app.goo.gl/fPnQcWjmPYn2EQHs9"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-gray-400 hover:text-blue-400 transition-colors"
+                                    className="text-muted-foreground hover:text-primary transition-colors"
                                 >
                                     west, Kaithapoyil Bridge, Kaithappoyil, kozhikode, Kerala 673586
                                 </a>
@@ -98,7 +98,7 @@ export function Contact() {
                     </div>
                 </div>
 
-                <div className="text-center text-gray-600 text-sm mt-20">
+                <div className="text-center text-muted-foreground text-sm mt-20">
                     &copy; {new Date().getFullYear()} AISOTOP. All rights reserved.
                 </div>
             </div>

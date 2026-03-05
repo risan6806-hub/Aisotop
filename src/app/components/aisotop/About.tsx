@@ -73,7 +73,7 @@ export function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-primary/20 transition-colors group text-foreground"
+                  className="flex items-center gap-3 p-4 rounded-2xl bg-foreground/5 border border-foreground/5 hover:border-primary/20 transition-colors group text-foreground"
                 >
                   <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background transition-colors">
                     <CheckCircle2 size={20} />
@@ -89,7 +89,7 @@ export function About() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="relative p-8 rounded-[2.5rem] bg-white/5 border border-white/5 overflow-hidden"
+            className="relative p-8 rounded-[2.5rem] bg-foreground/5 border border-foreground/5 overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] -z-10" />
             <p className="text-lg text-foreground/40 leading-relaxed max-w-lg relative z-10 italic">
@@ -99,7 +99,7 @@ export function About() {
         </div>
 
         {/* New Team Section */}
-        <div className="pt-20 border-t border-white/5">
+        <div className="pt-20 border-t border-foreground/5">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16">
             <div className="space-y-4">
               <div className="inline-block px-8 py-3 rounded-full border-2 border-foreground text-2xl font-black uppercase tracking-tight">
@@ -109,7 +109,7 @@ export function About() {
                 Together, We Create Something Meaningful
               </p>
             </div>
-            <div className="w-32 h-32 rounded-full bg-white flex items-center justify-center p-0 shadow-2xl overflow-hidden border-4 border-primary/20 relative">
+            <div className="w-32 h-32 rounded-full bg-card flex items-center justify-center p-0 shadow-2xl overflow-hidden border-4 border-primary/20 relative">
               <BorderBeam size={128} duration={10} borderWidth={4} colorFrom="#030213" colorTo="#030213" />
               <img
                 src={logoPrimary}
@@ -129,7 +129,7 @@ export function About() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="group"
               >
-                <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden mb-6 bg-white/5 border border-white/5">
+                <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden mb-6 bg-foreground/5 border border-foreground/5">
                   <ImageWithFallback
                     src={member.image}
                     alt={member.name}
