@@ -11,11 +11,11 @@ export function Automation() {
           alt="Industrial Automation"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-background/70" />
+        <div className="absolute inset-0 bg-background/60" />
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-12 lg:px-24">
-        <div className="max-w-2xl bg-white/10 backdrop-blur-md p-8 md:p-12 rounded-2xl border border-white/20">
+        <div className="max-w-2xl bg-foreground/5 backdrop-blur-md p-8 md:p-12 rounded-2xl border border-foreground/10">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Smart Automation Systems
           </h2>

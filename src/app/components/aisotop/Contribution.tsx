@@ -73,11 +73,11 @@ export function Contribution() {
                 alt={item.title}
                 className={`w-full ${item.autoHeight ? "h-auto" : "h-full object-cover"} transition-transform duration-500 group-hover:scale-105 ${item.position}`}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-6">
-                <h3 className="text-xl font-bold text-white mb-1">
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent flex flex-col justify-end p-6">
+                <h3 className="text-xl font-bold text-foreground mb-1">
                   {item.title}
                 </h3>
-                <p className="text-sm text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+                <p className="text-sm text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
                   {item.description}
                 </p>
               </div>
