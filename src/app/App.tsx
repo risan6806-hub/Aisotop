@@ -11,6 +11,7 @@ import { Contribution } from "./components/aisotop/Contribution";
 import { StudentProjects } from "./components/aisotop/StudentProjects";
 import { Automation } from "./components/aisotop/Automation";
 import { Contact } from "./components/aisotop/Contact";
+import { Team } from "./components/aisotop/Team";
 import { ThemeProvider } from "./components/aisotop/ThemeProvider";
 import { Preloader } from "./components/aisotop/Preloader";
 import { AnimatePresence } from "framer-motion";
@@ -52,6 +53,7 @@ export default function App() {
             <Education />
             <StudentProjects />
             <Contribution />
+            <Team />
             <Contact />
           </main>
         </div>
