@@ -46,13 +46,13 @@ export default function App() {
           <main>
             <Hero />
             <About />
-            <Unique />
             <Services />
             <Automation />
             <Products />
+            <Unique />
             <Education />
-            <StudentProjects />
             <Contribution />
+            <StudentProjects />
             <Team />
             <Contact />
           </main>

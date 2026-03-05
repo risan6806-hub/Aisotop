@@ -13,6 +13,7 @@ const links = [
   { name: "Products", href: "#products" },
   { name: "Education", href: "#education" },
   { name: "Projects", href: "#projects" },
+  { name: "Team", href: "#team" },
 ];
 
 const container = {
