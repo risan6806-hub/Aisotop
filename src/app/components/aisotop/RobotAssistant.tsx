@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, Send } from "lucide-react";
+import aisoRobot from "@/assets/aiso_robot.png";
 
 type Message = {
     id: number;
@@ -48,91 +49,6 @@ const KNOWLEDGE_BASE = [
         answer: "You're welcome! If you have more questions, I'm always here. Have a great day! 🤖"
     }
 ];
-
-/* ── SVG Robot Character ── */
-function AisoRobotSVG({ size = 48, animate = false }: { size?: number; animate?: boolean }) {
-    return (
-        <svg width={size} height={size} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Antenna */}
-            <motion.line
-                x1="60" y1="18" x2="60" y2="8"
-                stroke="#4ADE80" strokeWidth="3" strokeLinecap="round"
-                {...(animate ? { animate: { y2: [8, 5, 8] }, transition: { duration: 1.5, repeat: Infinity } } : {})}
-            />
-            <motion.circle
-                cx="60" cy="5" r="4"
-                fill="#4ADE80"
-                {...(animate ? { animate: { cy: [5, 2, 5], fill: ["#4ADE80", "#22D3EE", "#4ADE80"] }, transition: { duration: 1.5, repeat: Infinity } } : {})}
-            />
-
-            {/* Head */}
-            <rect x="32" y="18" width="56" height="40" rx="14" fill="#1E293B" stroke="#4ADE80" strokeWidth="2.5" />
-            {/* Visor / Face plate */}
-            <rect x="38" y="26" width="44" height="24" rx="8" fill="#0F172A" />
-
-            {/* Eyes */}
-            <motion.circle
-                cx="49" cy="38" r="6"
-                fill="#4ADE80"
-                {...(animate ? { animate: { r: [6, 3, 6] }, transition: { duration: 2.5, repeat: Infinity, repeatDelay: 2 } } : {})}
-            />
-            <motion.circle
-                cx="71" cy="38" r="6"
-                fill="#4ADE80"
-                {...(animate ? { animate: { r: [6, 3, 6] }, transition: { duration: 2.5, repeat: Infinity, repeatDelay: 2 } } : {})}
-            />
-            {/* Eye pupils / glint */}
-            <circle cx="51" cy="36" r="2" fill="#fff" opacity="0.7" />
-            <circle cx="73" cy="36" r="2" fill="#fff" opacity="0.7" />
-
-            {/* Mouth */}
-            <rect x="46" y="46" width="28" height="3" rx="1.5" fill="#4ADE80" opacity="0.6" />
-
-            {/* Neck */}
-            <rect x="52" y="58" width="16" height="8" rx="3" fill="#334155" />
-
-            {/* Body */}
-            <rect x="28" y="64" width="64" height="36" rx="10" fill="#1E293B" stroke="#4ADE80" strokeWidth="2" />
-            {/* Body panel */}
-            <rect x="42" y="72" width="36" height="20" rx="6" fill="#0F172A" />
-            {/* Heart / Core light */}
-            <motion.circle
-                cx="60" cy="82" r="5"
-                fill="#22D3EE"
-                {...(animate ? { animate: { opacity: [0.6, 1, 0.6], r: [5, 6, 5] }, transition: { duration: 1.2, repeat: Infinity } } : {})}
-            />
-            <circle cx="60" cy="82" r="2.5" fill="#fff" opacity="0.5" />
-
-            {/* Left Arm */}
-            <motion.g
-                {...(animate ? { animate: { rotate: [0, -8, 0] }, transition: { duration: 2, repeat: Infinity }, style: { transformOrigin: "28px 72px" } } : {})}
-            >
-                <rect x="12" y="68" width="16" height="8" rx="4" fill="#334155" />
-                <circle cx="12" cy="72" r="6" fill="#1E293B" stroke="#4ADE80" strokeWidth="1.5" />
-            </motion.g>
-
-            {/* Right Arm */}
-            <motion.g
-                {...(animate ? { animate: { rotate: [0, 8, 0] }, transition: { duration: 2, repeat: Infinity, delay: 0.3 }, style: { transformOrigin: "92px 72px" } } : {})}
-            >
-                <rect x="92" y="68" width="16" height="8" rx="4" fill="#334155" />
-                <circle cx="108" cy="72" r="6" fill="#1E293B" stroke="#4ADE80" strokeWidth="1.5" />
-            </motion.g>
-
-            {/* Left Leg */}
-            <rect x="38" y="100" width="14" height="12" rx="5" fill="#334155" />
-            <rect x="35" y="108" width="20" height="8" rx="4" fill="#1E293B" stroke="#4ADE80" strokeWidth="1.5" />
-
-            {/* Right Leg */}
-            <rect x="68" y="100" width="14" height="12" rx="5" fill="#334155" />
-            <rect x="65" y="108" width="20" height="8" rx="4" fill="#1E293B" stroke="#4ADE80" strokeWidth="1.5" />
-
-            {/* Ear bolts */}
-            <circle cx="32" cy="34" r="3" fill="#334155" stroke="#4ADE80" strokeWidth="1" />
-            <circle cx="88" cy="34" r="3" fill="#334155" stroke="#4ADE80" strokeWidth="1" />
-        </svg>
-    );
-}
 
 export function RobotAssistant() {
     const [isOpen, setIsOpen] = useState(false);
@@ -181,23 +97,23 @@ export function RobotAssistant() {
                         initial={{ opacity: 0, scale: 0.8, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.8, y: 20 }}
-                        className="absolute bottom-20 right-0 w-[350px] max-w-[calc(100vw-48px)] h-[500px] bg-card/90 backdrop-blur-2xl border border-border rounded-3xl shadow-2xl overflow-hidden flex flex-col"
+                        className="absolute bottom-24 right-0 w-[350px] max-w-[calc(100vw-48px)] h-[500px] bg-card/95 backdrop-blur-2xl border border-border rounded-3xl shadow-2xl overflow-hidden flex flex-col"
                     >
                         {/* Header */}
-                        <div className="p-4 bg-[#0F172A] flex items-center justify-between border-b border-[#4ADE80]/20">
+                        <div className="p-4 bg-gradient-to-r from-[#0D9488] to-[#0891B2] flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 flex items-center justify-center">
-                                    <AisoRobotSVG size={40} />
+                                <div className="w-10 h-10 rounded-full bg-white/20 p-0.5 overflow-hidden">
+                                    <img src={aisoRobot} alt="AISO" className="w-full h-full object-cover rounded-full" />
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-white leading-none">AISO</h4>
                                     <div className="flex items-center gap-1.5 mt-0.5">
                                         <div className="w-1.5 h-1.5 rounded-full bg-[#4ADE80] animate-pulse" />
-                                        <span className="text-[10px] text-[#4ADE80] uppercase font-black tracking-widest">Online</span>
+                                        <span className="text-[10px] text-white/80 uppercase font-black tracking-widest">Online</span>
                                     </div>
                                 </div>
                             </div>
-                            <button onClick={() => setIsOpen(false)} className="text-white/50 hover:text-white transition-colors">
+                            <button onClick={() => setIsOpen(false)} className="text-white/70 hover:text-white transition-colors">
                                 <X size={20} />
                             </button>
                         </div>
@@ -207,12 +123,12 @@ export function RobotAssistant() {
                             {messages.map((m) => (
                                 <div key={m.id} className={`flex ${m.sender === "user" ? "justify-end" : "justify-start gap-2"}`}>
                                     {m.sender === "bot" && (
-                                        <div className="w-6 h-6 flex-shrink-0 mt-1">
-                                            <AisoRobotSVG size={24} />
+                                        <div className="w-7 h-7 rounded-full overflow-hidden flex-shrink-0 mt-1 bg-gradient-to-br from-[#0D9488] to-[#0891B2] p-0.5">
+                                            <img src={aisoRobot} alt="AISO" className="w-full h-full object-cover rounded-full" />
                                         </div>
                                     )}
                                     <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${m.sender === "user"
-                                            ? "bg-[#4ADE80] text-[#0F172A] font-medium rounded-tr-none"
+                                            ? "bg-gradient-to-r from-[#0D9488] to-[#0891B2] text-white font-medium rounded-tr-none"
                                             : "bg-muted text-foreground rounded-tl-none"
                                         }`}>
                                         {m.text}
@@ -221,14 +137,14 @@ export function RobotAssistant() {
                             ))}
                             {isTyping && (
                                 <div className="flex justify-start gap-2">
-                                    <div className="w-6 h-6 flex-shrink-0 mt-1">
-                                        <AisoRobotSVG size={24} />
+                                    <div className="w-7 h-7 rounded-full overflow-hidden flex-shrink-0 mt-1 bg-gradient-to-br from-[#0D9488] to-[#0891B2] p-0.5">
+                                        <img src={aisoRobot} alt="AISO" className="w-full h-full object-cover rounded-full" />
                                     </div>
                                     <div className="bg-muted p-3 rounded-2xl rounded-tl-none">
                                         <div className="flex gap-1.5">
-                                            <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 0.8 }} className="w-2 h-2 bg-[#4ADE80] rounded-full" />
-                                            <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 0.8, delay: 0.2 }} className="w-2 h-2 bg-[#4ADE80] rounded-full" />
-                                            <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 0.8, delay: 0.4 }} className="w-2 h-2 bg-[#4ADE80] rounded-full" />
+                                            <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 0.8 }} className="w-2 h-2 bg-[#0D9488] rounded-full" />
+                                            <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 0.8, delay: 0.2 }} className="w-2 h-2 bg-[#0D9488] rounded-full" />
+                                            <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 0.8, delay: 0.4 }} className="w-2 h-2 bg-[#0D9488] rounded-full" />
                                         </div>
                                     </div>
                                 </div>
@@ -244,11 +160,11 @@ export function RobotAssistant() {
                                     onChange={(e) => setInputValue(e.target.value)}
                                     onKeyDown={(e) => e.key === "Enter" && handleSend()}
                                     placeholder="Ask AISO anything..."
-                                    className="w-full bg-muted/50 border border-border rounded-full py-2.5 pl-4 pr-12 text-sm focus:outline-none focus:border-[#4ADE80]/50 transition-colors"
+                                    className="w-full bg-muted/50 border border-border rounded-full py-2.5 pl-4 pr-12 text-sm focus:outline-none focus:border-[#0D9488]/50 transition-colors"
                                 />
                                 <button
                                     onClick={handleSend}
-                                    className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-[#4ADE80] text-[#0F172A] rounded-full flex items-center justify-center hover:scale-105 transition-transform"
+                                    className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-gradient-to-r from-[#0D9488] to-[#0891B2] text-white rounded-full flex items-center justify-center hover:scale-105 transition-transform"
                                 >
                                     <Send size={14} />
                                 </button>
@@ -258,16 +174,40 @@ export function RobotAssistant() {
                 )}
             </AnimatePresence>
 
-            {/* Toggle Button — SVG Robot */}
+            {/* Toggle Button — The Robot */}
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}
-                className="w-16 h-16 rounded-full bg-[#0F172A] border-2 border-[#4ADE80]/40 shadow-[0_0_30px_rgba(74,222,128,0.3)] flex items-center justify-center relative group"
+                className="relative group"
             >
-                {/* Pulse ring */}
-                <div className="absolute inset-0 rounded-full border-2 border-[#4ADE80]/30 animate-ping" />
-                <AisoRobotSVG size={40} animate />
+                {/* Glow ring */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-[#0D9488] to-[#0891B2] rounded-full blur-lg opacity-40 group-hover:opacity-60 transition-opacity animate-pulse" />
+
+                {/* Robot image — full body, no circle crop */}
+                <motion.div
+                    animate={{ y: [0, -4, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="relative z-10 w-20 h-20 drop-shadow-[0_4px_20px_rgba(13,148,136,0.5)]"
+                >
+                    <img
+                        src={aisoRobot}
+                        alt="AISO Assistant"
+                        className="w-full h-full object-contain"
+                    />
+                </motion.div>
+
+                {/* Chat bubble hint */}
+                {!isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="absolute -top-10 -left-16 bg-card text-foreground text-[11px] font-bold px-3 py-1.5 rounded-xl shadow-lg border border-border whitespace-nowrap"
+                    >
+                        Need help? 💬
+                        <div className="absolute -bottom-1 right-4 w-2 h-2 bg-card border-r border-b border-border rotate-45" />
+                    </motion.div>
+                )}
             </motion.button>
         </div>
     );
