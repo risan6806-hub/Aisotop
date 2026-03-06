@@ -52,12 +52,26 @@ const KNOWLEDGE_BASE = [
 
 export function RobotAssistant() {
     const [isOpen, setIsOpen] = useState(false);
+    const [showGreeting, setShowGreeting] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
         { id: 1, text: "Hi! I'm AISO, your AISOTOP assistant. How can I help you today? 🤖", sender: "bot" }
     ]);
     const [inputValue, setInputValue] = useState("");
     const [isTyping, setIsTyping] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
+
+    // Show greeting bubble after 2 seconds
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowGreeting(true);
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    // Hide greeting when chat is opened
+    useEffect(() => {
+        if (isOpen) setShowGreeting(false);
+    }, [isOpen]);
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -67,12 +81,10 @@ export function RobotAssistant() {
 
     const handleSend = () => {
         if (!inputValue.trim()) return;
-
         const userMessage: Message = { id: Date.now(), text: inputValue, sender: "user" };
         setMessages(prev => [...prev, userMessage]);
         setInputValue("");
         setIsTyping(true);
-
         setTimeout(() => {
             const responseText = getResponse(inputValue);
             const botMessage: Message = { id: Date.now() + 1, text: responseText, sender: "bot" };
@@ -90,20 +102,21 @@ export function RobotAssistant() {
     };
 
     return (
-        <div className="fixed bottom-6 right-6 z-[200]">
+        <div className="fixed bottom-4 right-4 z-[200]">
+            {/* Chat Window */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.8, y: 20 }}
-                        className="absolute bottom-24 right-0 w-[350px] max-w-[calc(100vw-48px)] h-[500px] bg-card/95 backdrop-blur-2xl border border-border rounded-3xl shadow-2xl overflow-hidden flex flex-col"
+                        className="absolute bottom-28 right-0 w-[350px] max-w-[calc(100vw-32px)] h-[480px] bg-card/95 backdrop-blur-2xl border border-border rounded-3xl shadow-2xl overflow-hidden flex flex-col"
                     >
                         {/* Header */}
                         <div className="p-4 bg-gradient-to-r from-[#0D9488] to-[#0891B2] flex items-center justify-between">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-full bg-white/20 p-0.5 overflow-hidden">
-                                    <img src={aisoRobot} alt="AISO" className="w-full h-full object-cover rounded-full" />
+                                    <img src={aisoRobot} alt="AISO" className="w-full h-full object-cover rounded-full mix-blend-multiply" style={{ background: "transparent" }} />
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-white leading-none">AISO</h4>
@@ -174,41 +187,60 @@ export function RobotAssistant() {
                 )}
             </AnimatePresence>
 
-            {/* Toggle Button — The Robot */}
+            {/* Greeting Speech Bubble */}
+            <AnimatePresence>
+                {showGreeting && !isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, x: 20, scale: 0.8 }}
+                        animate={{ opacity: 1, x: 0, scale: 1 }}
+                        exit={{ opacity: 0, x: 20, scale: 0.8 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        className="absolute bottom-24 right-2 z-20"
+                    >
+                        <div
+                            className="bg-card text-foreground text-sm font-semibold px-4 py-3 rounded-2xl rounded-br-none shadow-xl border border-border max-w-[200px] cursor-pointer"
+                            onClick={() => { setShowGreeting(false); setIsOpen(true); }}
+                        >
+                            Hi! 👋 How can I help you?
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Robot Character — Full Body, No Background */}
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.9 }}
-                className="relative group"
+                className="relative group cursor-pointer bg-transparent border-none outline-none"
+                whileTap={{ scale: 0.95 }}
             >
-                {/* Glow ring */}
-                <div className="absolute -inset-2 bg-gradient-to-r from-[#0D9488] to-[#0891B2] rounded-full blur-lg opacity-40 group-hover:opacity-60 transition-opacity animate-pulse" />
+                {/* Subtle ground glow */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-3 bg-[#0D9488]/30 rounded-full blur-md" />
 
-                {/* Robot image — full body, no circle crop */}
+                {/* The robot — floating and waving */}
                 <motion.div
-                    animate={{ y: [0, -4, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    className="relative z-10 w-20 h-20 drop-shadow-[0_4px_20px_rgba(13,148,136,0.5)]"
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    className="relative z-10"
                 >
                     <img
                         src={aisoRobot}
                         alt="AISO Assistant"
-                        className="w-full h-full object-contain"
+                        className="w-24 h-24 object-contain drop-shadow-[0_8px_24px_rgba(13,148,136,0.4)]"
+                        style={{
+                            mixBlendMode: "normal",
+                            background: "transparent",
+                            filter: "drop-shadow(0 4px 16px rgba(13,148,136,0.3))",
+                        }}
                     />
                 </motion.div>
-
-                {/* Chat bubble hint */}
-                {!isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="absolute -top-10 -left-16 bg-card text-foreground text-[11px] font-bold px-3 py-1.5 rounded-xl shadow-lg border border-border whitespace-nowrap"
-                    >
-                        Need help? 💬
-                        <div className="absolute -bottom-1 right-4 w-2 h-2 bg-card border-r border-b border-border rotate-45" />
-                    </motion.div>
-                )}
             </motion.button>
+
+            {/* Inline CSS to remove any white background from the image */}
+            <style>{`
+        .fixed img[alt="AISO Assistant"] {
+          background: transparent !important;
+        }
+      `}</style>
         </div>
     );
 }
