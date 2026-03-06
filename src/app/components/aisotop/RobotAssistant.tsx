@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, Send } from "lucide-react";
+import aisoRobotImg from "@/assets/aiso_robot.png";
 
 type Message = {
     id: number;
@@ -50,12 +51,7 @@ const KNOWLEDGE_BASE = [
 ];
 
 /* ═══════════════════════════════════════════════
-   ANIMATED 3D-STYLE ROBOT (Pure CSS + Motion)
-   - White body, teal accents
-   - Blinking eyes
-   - Lip sync (mouth moves when talking)
-   - Waving arm
-   - Idle floating
+   ROBOT IMAGE COMPONENT (with floating animation)
    ═══════════════════════════════════════════════ */
 
 function AisoRobot({
@@ -67,255 +63,61 @@ function AisoRobot({
     isWaving?: boolean;
     size?: number;
 }) {
-    const scale = size / 120;
-
     return (
         <motion.div
-            animate={{ y: [0, -4, 0] }}
+            animate={{ y: [0, -6, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            style={{ width: size, height: size * 1.4, position: "relative", transform: `scale(${scale})`, transformOrigin: "bottom center" }}
+            style={{
+                width: size,
+                height: size,
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+            }}
         >
-            <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: 120, height: 168 }}>
-                {/* ── Antenna ── */}
-                <motion.div
-                    animate={{ rotate: [-5, 5, -5] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    style={{ position: "absolute", top: 0, left: "50%", transformOrigin: "bottom center", transform: "translateX(-50%)", zIndex: 10 }}
-                >
-                    <div style={{ width: 3, height: 14, background: "linear-gradient(to top, #99F6E4, #0D9488)", borderRadius: 2, margin: "0 auto" }} />
-                    <motion.div
-                        animate={{ boxShadow: ["0 0 4px #0D9488", "0 0 12px #22D3EE", "0 0 4px #0D9488"] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                        style={{ width: 8, height: 8, borderRadius: "50%", background: "radial-gradient(circle, #5EEAD4, #0D9488)", margin: "-2px auto 0" }}
-                    />
-                </motion.div>
+            {/* Robot Image */}
+            <motion.img
+                src={aisoRobotImg}
+                alt="AISO Robot Assistant"
+                animate={isWaving
+                    ? { rotate: [-3, 3, -3] }
+                    : isTalking
+                        ? { scale: [1, 1.03, 1] }
+                        : {}
+                }
+                transition={isWaving
+                    ? { duration: 0.6, repeat: Infinity, ease: "easeInOut" }
+                    : isTalking
+                        ? { duration: 0.5, repeat: Infinity, ease: "easeInOut" }
+                        : {}
+                }
+                style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                    filter: "drop-shadow(0 4px 12px rgba(13,148,136,0.3))",
+                    pointerEvents: "none",
+                    userSelect: "none",
+                }}
+                draggable={false}
+            />
 
-                {/* ── Head ── */}
-                <div style={{
-                    position: "absolute", top: 14, left: "50%", transform: "translateX(-50%)",
-                    width: 64, height: 52, borderRadius: "32px 32px 24px 24px",
-                    background: "linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 40%, #CBD5E1 100%)",
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.8)",
-                    zIndex: 5,
-                }}>
-                    {/* Ear left */}
-                    <div style={{
-                        position: "absolute", left: -8, top: 16, width: 12, height: 18, borderRadius: 6,
-                        background: "linear-gradient(135deg, #0D9488, #0891B2)",
-                        boxShadow: "0 2px 6px rgba(13,148,136,0.4)",
-                    }} />
-                    {/* Ear right */}
-                    <div style={{
-                        position: "absolute", right: -8, top: 16, width: 12, height: 18, borderRadius: 6,
-                        background: "linear-gradient(135deg, #0D9488, #0891B2)",
-                        boxShadow: "0 2px 6px rgba(13,148,136,0.4)",
-                    }} />
-
-                    {/* Visor / Face */}
-                    <div style={{
-                        position: "absolute", top: 10, left: 8, right: 8, height: 28, borderRadius: 14,
-                        background: "linear-gradient(180deg, #1E293B 0%, #0F172A 100%)",
-                        boxShadow: "inset 0 2px 8px rgba(0,0,0,0.5)",
-                        overflow: "hidden",
-                    }}>
-                        {/* Eye Left */}
-                        <motion.div
-                            animate={{ scaleY: [1, 1, 0.1, 1, 1] }}
-                            transition={{ duration: 4, repeat: Infinity, times: [0, 0.45, 0.5, 0.55, 1] }}
-                            style={{
-                                position: "absolute", left: 8, top: 6, width: 14, height: 14, borderRadius: "50%",
-                                background: "radial-gradient(circle at 40% 35%, #5EEAD4, #0D9488, #065F53)",
-                                boxShadow: "0 0 10px rgba(94,234,212,0.6), inset 0 -2px 4px rgba(0,0,0,0.3)",
-                            }}
-                        >
-                            <div style={{ position: "absolute", top: 3, left: 4, width: 5, height: 5, borderRadius: "50%", background: "#fff", opacity: 0.9 }} />
-                            <div style={{ position: "absolute", top: 7, left: 7, width: 3, height: 3, borderRadius: "50%", background: "#fff", opacity: 0.4 }} />
-                        </motion.div>
-
-                        {/* Eye Right */}
-                        <motion.div
-                            animate={{ scaleY: [1, 1, 0.1, 1, 1] }}
-                            transition={{ duration: 4, repeat: Infinity, times: [0, 0.45, 0.5, 0.55, 1] }}
-                            style={{
-                                position: "absolute", right: 8, top: 6, width: 14, height: 14, borderRadius: "50%",
-                                background: "radial-gradient(circle at 40% 35%, #5EEAD4, #0D9488, #065F53)",
-                                boxShadow: "0 0 10px rgba(94,234,212,0.6), inset 0 -2px 4px rgba(0,0,0,0.3)",
-                            }}
-                        >
-                            <div style={{ position: "absolute", top: 3, left: 4, width: 5, height: 5, borderRadius: "50%", background: "#fff", opacity: 0.9 }} />
-                            <div style={{ position: "absolute", top: 7, left: 7, width: 3, height: 3, borderRadius: "50%", background: "#fff", opacity: 0.4 }} />
-                        </motion.div>
-                    </div>
-
-                    {/* Mouth — lip sync */}
-                    <motion.div
-                        animate={isTalking
-                            ? { height: [3, 7, 4, 8, 3, 6, 3], width: [14, 18, 12, 16, 14, 18, 14] }
-                            : { height: 3, width: 14 }
-                        }
-                        transition={isTalking
-                            ? { duration: 0.6, repeat: Infinity, ease: "easeInOut" }
-                            : { duration: 0.3 }
-                        }
-                        style={{
-                            position: "absolute", bottom: 6, left: "50%", transform: "translateX(-50%)",
-                            borderRadius: 4,
-                            background: "linear-gradient(135deg, #0D9488, #14B8A6)",
-                            boxShadow: isTalking ? "0 0 6px rgba(13,148,136,0.5)" : "none",
-                        }}
-                    />
-                </div>
-
-                {/* ── Neck ── */}
-                <div style={{
-                    position: "absolute", top: 62, left: "50%", transform: "translateX(-50%)",
-                    width: 18, height: 10, borderRadius: 4,
-                    background: "linear-gradient(180deg, #94A3B8, #64748B)",
-                    zIndex: 4,
-                }} />
-
-                {/* ── Body ── */}
-                <div style={{
-                    position: "absolute", top: 68, left: "50%", transform: "translateX(-50%)",
-                    width: 56, height: 48, borderRadius: "16px 16px 20px 20px",
-                    background: "linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 50%, #CBD5E1 100%)",
-                    boxShadow: "0 4px 16px rgba(0,0,0,0.12), inset 0 2px 4px rgba(255,255,255,0.7)",
-                    zIndex: 3,
-                }}>
-                    {/* Chest icon */}
-                    <div style={{
-                        position: "absolute", top: 8, left: "50%", transform: "translateX(-50%)",
-                        width: 14, height: 14, borderRadius: 4, border: "2px solid #0D9488",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                    }}>
-                        <motion.div
-                            animate={{ opacity: [0.5, 1, 0.5] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                            style={{ width: 6, height: 6, borderRadius: 2, background: "#0D9488" }}
-                        />
-                    </div>
-
-                    {/* Belt panel */}
-                    <div style={{
-                        position: "absolute", bottom: 8, left: 8, right: 8, height: 14, borderRadius: 6,
-                        background: "linear-gradient(90deg, #0D9488, #0891B2, #0D9488)",
-                        boxShadow: "0 0 8px rgba(13,148,136,0.3)",
-                        overflow: "hidden",
-                    }}>
-                        {/* Scrolling LED lights */}
-                        <motion.div
-                            animate={{ x: [-20, 40] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                            style={{ display: "flex", gap: 4, position: "absolute", top: 4 }}
-                        >
-                            {[...Array(10)].map((_, i) => (
-                                <div key={i} style={{ width: 3, height: 6, borderRadius: 1, background: "rgba(255,255,255,0.5)" }} />
-                            ))}
-                        </motion.div>
-                    </div>
-                </div>
-
-                {/* ── Left Arm ── */}
-                <motion.div
-                    animate={{ rotate: [0, -3, 0, 3, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    style={{
-                        position: "absolute", top: 72, left: 10, transformOrigin: "top center", zIndex: 2,
-                    }}
-                >
-                    {/* Shoulder */}
-                    <div style={{
-                        width: 14, height: 14, borderRadius: "50%",
-                        background: "linear-gradient(135deg, #0D9488, #0891B2)",
-                        boxShadow: "0 2px 6px rgba(13,148,136,0.3)",
-                    }} />
-                    {/* Upper arm */}
-                    <div style={{
-                        width: 10, height: 20, borderRadius: 5, margin: "-2px auto 0",
-                        background: "linear-gradient(180deg, #F1F5F9, #CBD5E1)",
-                    }} />
-                    {/* Forearm + hand */}
-                    <div style={{
-                        width: 12, height: 12, borderRadius: 6, margin: "0 auto",
-                        background: "linear-gradient(180deg, #94A3B8, #64748B)",
-                        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-                    }} />
-                </motion.div>
-
-                {/* ── Right Arm (waving) ── */}
-                <motion.div
-                    animate={isWaving
-                        ? { rotate: [-20, -50, -20, -50, -20] }
-                        : { rotate: [0, 3, 0, -3, 0] }
-                    }
-                    transition={isWaving
-                        ? { duration: 0.8, repeat: Infinity, ease: "easeInOut" }
-                        : { duration: 4, repeat: Infinity, ease: "easeInOut" }
-                    }
-                    style={{
-                        position: "absolute", top: 72, right: 10, transformOrigin: "top center", zIndex: 2,
-                    }}
-                >
-                    {/* Shoulder */}
-                    <div style={{
-                        width: 14, height: 14, borderRadius: "50%",
-                        background: "linear-gradient(135deg, #0D9488, #0891B2)",
-                        boxShadow: "0 2px 6px rgba(13,148,136,0.3)",
-                    }} />
-                    {/* Upper arm */}
-                    <div style={{
-                        width: 10, height: 20, borderRadius: 5, margin: "-2px auto 0",
-                        background: "linear-gradient(180deg, #F1F5F9, #CBD5E1)",
-                    }} />
-                    {/* Hand */}
-                    <div style={{
-                        width: 12, height: 12, borderRadius: 6, margin: "0 auto",
-                        background: "linear-gradient(180deg, #94A3B8, #64748B)",
-                        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-                    }} />
-                </motion.div>
-
-                {/* ── Left Leg ── */}
-                <div style={{ position: "absolute", bottom: 0, left: 26, zIndex: 2 }}>
-                    <div style={{
-                        width: 12, height: 22, borderRadius: 6,
-                        background: "linear-gradient(180deg, #E2E8F0, #CBD5E1)",
-                    }} />
-                    {/* Boot */}
-                    <div style={{
-                        width: 20, height: 12, borderRadius: "6px 6px 8px 8px", marginLeft: -4,
-                        background: "linear-gradient(180deg, #F1F5F9, #E2E8F0)",
-                        borderBottom: "3px solid #0D9488",
-                        boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-                    }} />
-                </div>
-
-                {/* ── Right Leg ── */}
-                <div style={{ position: "absolute", bottom: 0, right: 26, zIndex: 2 }}>
-                    <div style={{
-                        width: 12, height: 22, borderRadius: 6,
-                        background: "linear-gradient(180deg, #E2E8F0, #CBD5E1)",
-                    }} />
-                    {/* Boot */}
-                    <div style={{
-                        width: 20, height: 12, borderRadius: "6px 6px 8px 8px", marginLeft: -4,
-                        background: "linear-gradient(180deg, #F1F5F9, #E2E8F0)",
-                        borderBottom: "3px solid #0D9488",
-                        boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-                    }} />
-                </div>
-
-                {/* ── Ground Shadow ── */}
-                <motion.div
-                    animate={{ scale: [1, 0.9, 1], opacity: [0.3, 0.2, 0.3] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    style={{
-                        position: "absolute", bottom: -4, left: "50%", transform: "translateX(-50%)",
-                        width: 50, height: 6, borderRadius: "50%",
-                        background: "radial-gradient(ellipse, rgba(13,148,136,0.3), transparent)",
-                    }}
-                />
-            </div>
+            {/* Ground Glow */}
+            <motion.div
+                animate={{ scale: [1, 0.85, 1], opacity: [0.4, 0.2, 0.4] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                style={{
+                    position: "absolute",
+                    bottom: -4,
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: size * 0.5,
+                    height: 6,
+                    borderRadius: "50%",
+                    background: "radial-gradient(ellipse, rgba(13,148,136,0.4), transparent)",
+                }}
+            />
         </motion.div>
     );
 }
@@ -422,8 +224,8 @@ export function RobotAssistant() {
                                         </div>
                                     )}
                                     <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${m.sender === "user"
-                                            ? "bg-gradient-to-r from-[#0D9488] to-[#0891B2] text-white font-medium rounded-tr-none"
-                                            : "bg-muted text-foreground rounded-tl-none"
+                                        ? "bg-gradient-to-r from-[#0D9488] to-[#0891B2] text-white font-medium rounded-tr-none"
+                                        : "bg-muted text-foreground rounded-tl-none"
                                         }`}>
                                         {m.text}
                                     </div>
