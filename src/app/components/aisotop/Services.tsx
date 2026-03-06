@@ -117,7 +117,7 @@ export function Services() {
                 alt={service.title}
                 className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-80" />
               <div className="absolute top-6 right-6 w-12 h-12 bg-primary/10 backdrop-blur-md rounded-xl flex items-center justify-center border border-foreground/10 group-hover:bg-primary group-hover:text-background transition-all duration-500">
                 <service.icon className="text-primary group-hover:text-background transition-colors duration-500" size={24} />
               </div>

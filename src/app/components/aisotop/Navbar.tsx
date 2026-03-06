@@ -14,7 +14,6 @@ const links = [
   { name: "Education", href: "#education" },
   { name: "Projects", href: "#projects" },
   { name: "Team", href: "#team" },
-  { name: "Contact", href: "#contact" },
 ];
 
 const container = {
@@ -47,7 +46,7 @@ export function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? "bg-background/80 backdrop-blur-xl border-b border-foreground/5 py-4" : "bg-transparent py-8"
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? "bg-background/80 backdrop-blur-xl border-b border-foreground/5 py-4" : "bg-transparent py-5"
         }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -73,7 +72,7 @@ export function Navbar() {
           variants={container}
           initial="hidden"
           animate="show"
-          className="hidden md:flex items-center gap-10"
+          className="hidden md:flex items-center gap-6 lg:gap-8"
         >
           {links.map((link) => (
             <motion.a
@@ -91,9 +90,9 @@ export function Navbar() {
             variants={item}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="relative overflow-hidden px-6 py-2.5 rounded-full bg-foreground text-background text-sm font-semibold transition-all hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+            className="relative overflow-hidden px-6 py-2.5 rounded-full bg-foreground text-background text-sm font-semibold transition-all hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] whitespace-nowrap"
           >
-            Get in Touch
+            GET IN TOUCH
             <BorderBeam size={60} duration={4} borderWidth={2} colorFrom="#00FFFF" colorTo="#8B5CF6" />
           </motion.a>
           <ThemeToggle />
@@ -138,10 +137,10 @@ export function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: links.length * 0.1 }}
-                className="mt-4 px-10 py-4 rounded-full bg-foreground text-background text-xl font-bold"
+                className="mt-4 px-10 py-4 rounded-full bg-foreground text-background text-xl font-bold whitespace-nowrap"
                 onClick={() => setIsOpen(false)}
               >
-                Get in Touch
+                GET IN TOUCH
               </motion.a>
               <div className="mt-4">
                 <ThemeToggle />
