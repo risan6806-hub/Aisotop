@@ -15,6 +15,7 @@ import { Team } from "./components/aisotop/Team";
 import { ThemeProvider } from "./components/aisotop/ThemeProvider";
 import { Preloader } from "./components/aisotop/Preloader";
 import { ThemeChooser } from "./components/aisotop/ThemeChooser";
+import { RobotAssistant } from "./components/aisotop/RobotAssistant";
 import { AnimatePresence } from "motion/react";
 
 export default function App() {
@@ -77,6 +78,7 @@ export default function App() {
             <StudentProjects />
             <Contact />
           </main>
+          <RobotAssistant />
         </div>
       )}
     </ThemeProvider>

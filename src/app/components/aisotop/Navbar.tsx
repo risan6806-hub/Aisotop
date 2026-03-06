@@ -72,14 +72,14 @@ export function Navbar() {
           variants={container}
           initial="hidden"
           animate="show"
-          className="hidden md:flex items-center gap-6 lg:gap-8"
+          className="hidden md:flex items-center gap-4 lg:gap-6"
         >
           {links.map((link) => (
             <motion.a
               key={link.name}
               href={link.href}
               variants={item}
-              className="text-sm font-medium text-foreground/60 hover:text-foreground transition-colors relative group py-2"
+              className="text-[12px] font-bold uppercase tracking-tight text-foreground/60 hover:text-foreground transition-colors relative group py-2"
             >
               {link.name}
               <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground transition-all duration-300 group-hover:w-full" />
@@ -90,7 +90,7 @@ export function Navbar() {
             variants={item}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="relative overflow-hidden px-6 py-2.5 rounded-full bg-foreground text-background text-sm font-semibold transition-all hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] whitespace-nowrap"
+            className="relative overflow-hidden px-5 py-2 rounded-full bg-foreground text-background text-[11px] font-black uppercase tracking-wider transition-all hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] whitespace-nowrap flex-shrink-0"
           >
             GET IN TOUCH
             <BorderBeam size={60} duration={4} borderWidth={2} colorFrom="#00FFFF" colorTo="#8B5CF6" />
