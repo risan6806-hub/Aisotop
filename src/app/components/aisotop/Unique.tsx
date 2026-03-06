@@ -38,7 +38,7 @@ export function Unique() {
           <div className="grid gap-3">
             {strengths.map((item, idx) => (
               <div key={idx} className="flex items-center gap-4 p-5 bg-muted/40 backdrop-blur-xl rounded-2xl border border-border hover:border-primary/30 hover:bg-muted/50 transition-all duration-500 group">
-                <div className="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black transition-all duration-500">
+                <div className="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
                   <Check size={16} strokeWidth={3} />
                 </div>
                 <span className="text-base text-muted-foreground font-bold tracking-tight group-hover:text-foreground transition-colors duration-300">{item}</span>

@@ -14,6 +14,7 @@ const links = [
   { name: "Education", href: "#education" },
   { name: "Projects", href: "#projects" },
   { name: "Team", href: "#team" },
+  { name: "Contact", href: "#contact" },
 ];
 
 const container = {

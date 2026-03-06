@@ -15,7 +15,7 @@ import { Team } from "./components/aisotop/Team";
 import { ThemeProvider } from "./components/aisotop/ThemeProvider";
 import { Preloader } from "./components/aisotop/Preloader";
 import { ThemeChooser } from "./components/aisotop/ThemeChooser";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "motion/react";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,12 +26,16 @@ export default function App() {
     if (!showSite) return;
 
     const lenis = new Lenis();
+    let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
-    return () => lenis.destroy();
+    rafId = requestAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
   }, [showSite]);
 
   const handleLoadingComplete = () => {

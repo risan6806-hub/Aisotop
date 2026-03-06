@@ -11,10 +11,9 @@ interface SectionProps {
   id: string;
   className?: string;
   children: ReactNode;
-  dark?: boolean;
 }
 
-export function Section({ id, className, children, dark = false }: SectionProps) {
+export function Section({ id, className, children }: SectionProps) {
   return (
     <section
       id={id}
