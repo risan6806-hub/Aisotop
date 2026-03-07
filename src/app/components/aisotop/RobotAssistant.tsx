@@ -244,31 +244,6 @@ function AisoRobot({
                             </defs>
                         </svg>
 
-                        {/* ── MOUTH — small happy smile ── */}
-                        <motion.div
-                            style={{
-                                position: "absolute",
-                                bottom: 4 * s, left: "50%", transform: "translateX(-50%)",
-                            }}
-                            animate={isTalking
-                                ? { scaleY: [1, 1.8, 0.6, 1.6, 1], scaleX: [1, 1.2, 0.9, 1.1, 1] }
-                                : {}
-                            }
-                            transition={isTalking
-                                ? { duration: 0.5, repeat: Infinity, ease: "easeInOut" }
-                                : {}
-                            }
-                        >
-                            <svg width={16 * s} height={8 * s} viewBox="0 0 16 8">
-                                <path
-                                    d="M3,2 Q8,8 13,2"
-                                    fill="none"
-                                    stroke="#56D7C0"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                />
-                            </svg>
-                        </motion.div>
                     </div>
                 </div>
 
