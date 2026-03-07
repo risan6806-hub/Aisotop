@@ -40,20 +40,23 @@ export function Contact() {
                         </p>
                         <div className="flex gap-4 mt-8">
                             {[
-                                { icon: Facebook, label: "Facebook" },
-                                { icon: Twitter, label: "Twitter" },
-                                { icon: Linkedin, label: "LinkedIn" },
-                                { icon: Instagram, label: "Instagram" }
+                                { icon: Facebook, label: "Facebook", href: "#" },
+                                { icon: Twitter, label: "Twitter", href: "#" },
+                                { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/aisotop-undefined-0098b33b5" },
+                                { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/aisotop._?igsh=MWk3YXo0bDM1cmds&utm_source=qr" }
                             ].map((item, i) => (
-                                <motion.div
+                                <motion.a
                                     key={i}
+                                    href={item.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)" }}
                                     whileTap={{ scale: 0.95 }}
                                     className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-colors cursor-pointer group"
                                     title={item.label}
                                 >
                                     <item.icon size={20} className="text-foreground/70 group-hover:text-primary transition-colors" />
-                                </motion.div>
+                                </motion.a>
                             ))}
                         </div>
                     </div>
