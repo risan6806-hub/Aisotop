@@ -520,7 +520,11 @@ export function RobotAssistant() {
         stopSpeech();
 
         // Filter out emojis and special symbols from speech
-        const cleanText = text.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '').trim();
+        // Also map "AISOTOP" to "Aisotop" for fluent pronunciation (avoiding acronym reading)
+        const cleanText = text
+            .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '')
+            .replace(/AISOTOP/g, 'Aisotop')
+            .trim();
 
         if (!cleanText) return;
 
