@@ -1,6 +1,6 @@
 import { Section } from "./Section";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
-import { Mail, MapPin, Phone, Globe } from "lucide-react";
+import { Mail, MapPin, Phone, Globe, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 import { motion } from "motion/react";
 import logo from "figma:asset/48d643282720ccf0457972cedd4b1db2988d0ebb.png";
 
@@ -38,11 +38,23 @@ export function Contact() {
                         <p className="text-muted-foreground max-w-sm mb-6">
                             Leading the way in Physical AI, Robotics, and Automation solutions for a smarter tomorrow.
                         </p>
-                        <div className="flex gap-4">
-                            {/* Social placeholders */}
-                            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
-                                <Globe size={20} />
-                            </div>
+                        <div className="flex gap-4 mt-8">
+                            {[
+                                { icon: Facebook, label: "Facebook" },
+                                { icon: Twitter, label: "Twitter" },
+                                { icon: Linkedin, label: "LinkedIn" },
+                                { icon: Instagram, label: "Instagram" }
+                            ].map((item, i) => (
+                                <motion.div
+                                    key={i}
+                                    whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)" }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-colors cursor-pointer group"
+                                    title={item.label}
+                                >
+                                    <item.icon size={20} className="text-foreground/70 group-hover:text-primary transition-colors" />
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
 
