@@ -14,13 +14,11 @@ import { Contact } from "./components/aisotop/Contact";
 import { Team } from "./components/aisotop/Team";
 import { ThemeProvider } from "./components/aisotop/ThemeProvider";
 import { Preloader } from "./components/aisotop/Preloader";
-import { ThemeChooser } from "./components/aisotop/ThemeChooser";
 import { RobotAssistant } from "./components/aisotop/RobotAssistant";
 import { AnimatePresence } from "motion/react";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isChoosingTheme, setIsChoosingTheme] = useState(false);
   const [showSite, setShowSite] = useState(false);
 
   useEffect(() => {
@@ -41,13 +39,9 @@ export default function App() {
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
-    setIsChoosingTheme(true);
-  };
-
-  const handleThemeSelected = () => {
-    setIsChoosingTheme(false);
     setShowSite(true);
   };
+
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
@@ -57,9 +51,6 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {isChoosingTheme && (
-        <ThemeChooser onThemeSelected={handleThemeSelected} />
-      )}
 
       {showSite && (
         <div className="bg-background min-h-screen relative text-foreground selection:bg-primary selection:text-primary-foreground">
