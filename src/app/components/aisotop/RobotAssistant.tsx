@@ -522,7 +522,13 @@ export function RobotAssistant() {
 
     const speak = (text: string) => {
         stopSpeech();
-        const utterance = new SpeechSynthesisUtterance(text);
+
+        // Filter out emojis and special symbols from speech
+        const cleanText = text.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '').trim();
+
+        if (!cleanText) return;
+
+        const utterance = new SpeechSynthesisUtterance(cleanText);
         utterance.rate = 0.95;
         utterance.pitch = 1.1; // Slightly higher robot-like pitch
 
