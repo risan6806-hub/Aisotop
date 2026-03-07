@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 import logo from "figma:asset/48d643282720ccf0457972cedd4b1db2988d0ebb.png";
@@ -28,14 +28,21 @@ const container = {
 };
 
 const item = {
-  hidden: { y: -20, opacity: 0 },
-  show: { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1] as any, duration: 0.8 } },
+  hidden: { y: -10, opacity: 0 },
+  show: { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1] as any, duration: 0.6 } },
 };
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showBeam, setShowBeam] = useState(false);
   const { scrollY } = useScroll();
+
+  useEffect(() => {
+    // Delay beam to avoid lag during entrance animation
+    const timer = setTimeout(() => setShowBeam(true), 1200);
+    return () => clearTimeout(timer);
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 50);
@@ -90,10 +97,12 @@ export function Navbar() {
             variants={item}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="relative overflow-hidden px-5 py-2 rounded-full bg-foreground text-background text-[11px] font-black uppercase tracking-wider transition-all hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] whitespace-nowrap flex-shrink-0"
+            className="relative overflow-hidden px-5 py-2 rounded-full bg-foreground text-background text-[11px] font-black uppercase tracking-wider transition-all hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] whitespace-nowrap flex-shrink-0 transform-gpu"
           >
             GET IN TOUCH
-            <BorderBeam size={60} duration={4} borderWidth={2} colorFrom="#00FFFF" colorTo="#8B5CF6" />
+            {showBeam && (
+              <BorderBeam size={60} duration={4} borderWidth={2} colorFrom="#00FFFF" colorTo="#8B5CF6" />
+            )}
           </motion.a>
           <ThemeToggle />
         </motion.div>
