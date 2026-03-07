@@ -12,40 +12,52 @@ type Message = {
 
 const KNOWLEDGE_BASE = [
     {
-        keywords: ["who", "what", "aisotop", "about", "mission"],
-        answer: "I'm AISO! AISOTOP is a next-generation Physical AI, robotics, and automation company. Our mission is bridging digital intelligence with physical execution to solve real-world challenges."
+        keywords: ["who", "what", "aisotop", "about", "mission", "vision", "goal"],
+        answer: "I'm AISO! AISOTOP is a next-generation Physical AI, robotics, and automation company. Our mission is bridging digital intelligence with physical execution to solve real-world challenges and transform vision into reality."
     },
     {
-        keywords: ["services", "do", "offer", "automation", "robotics", "physical ai"],
-        answer: "We offer specialized solutions in Physical AI & Robotics, Industrial Automation, AI Integrated Smart Systems, and Robotics Training for schools and colleges."
+        keywords: ["services", "do", "offer", "automation", "robotics", "physical ai", "smart systems", "industrial", "custom"],
+        answer: "We offer specialized solutions in Physical AI & Robotics, AI Integrated Smart Systems, Industrial & Custom Automation, and Hands-on Innovation Programs."
     },
     {
-        keywords: ["products", "innovation", "robot"],
+        keywords: ["education", "school", "college", "workshop", "training", "program"],
+        answer: "We empower schools and colleges through robotics training, workshops, and project-based learning to bridge the gap between theory and industry. Ask me about our Robotics Training for Schools or Workshops for Colleges!"
+    },
+    {
+        keywords: ["products", "innovation", "robot", "innovative"],
         answer: "We develop innovative robotics products integrated with AI, such as our Physical AI systems and smart automation units, designed to solve industrial and educational challenges."
     },
     {
-        keywords: ["team", "who is", "akhil", "ressan", "marjana", "anshad"],
-        answer: "Our core team includes Akhil AV, Muhammed Ressan, and Marjana Parveen as Robotics Research Engineers, led by Anshad K, our Robotics Research Head."
+        keywords: ["team", "people", "who works", "founder", "engineers"],
+        answer: "Our core team of experts includes Akhil AV, Muhammed Ressan, and Marjana Parveen as Robotics Research Engineers, led by Anshad K, our Robotics Research Head."
     },
     {
-        keywords: ["education", "school", "college", "workshop", "training"],
-        answer: "We empower schools and colleges through robotics training, workshops, and project-based learning to bridge the gap between theory and industry."
+        keywords: ["akhil", "akhi", "av"],
+        answer: "Akhil AV is a Robotics Research Engineer at AISOTOP. He's one of the key minds behind our physical AI and robotics innovation!"
     },
     {
-        keywords: ["contact", "email", "phone", "location", "address"],
-        answer: "Reach us at info@aisotop.com or aisotop.robotics@gmail.com. Phone: +91 90747 02722 / +91 97458 15897. Location: Kaithappoyil, Calicut, Kerala."
+        keywords: ["ressan", "muhammed", "reesan"],
+        answer: "Muhammed Ressan is a Robotics Research Engineer here at AISOTOP, dedicated to solving real-world problems through robotics."
     },
     {
-        keywords: ["unique", "why", "different"],
-        answer: "AISOTOP stands at the intersection of Physical AI and Robotics, delivering practical, innovative, and industry-relevant solutions."
+        keywords: ["marjana", "parveen"],
+        answer: "Marjana Parveen is a Robotics Research Engineer at AISOTOP, contributing her expertise to our next-gen robotics projects."
     },
     {
-        keywords: ["hello", "hi", "hey", "hii"],
-        answer: "Hey there! 👋 I'm AISO! Feel free to ask me about our services, products, team, or anything else!"
+        keywords: ["anshad", "anshad k", "head"],
+        answer: "Anshad K is our Robotics Research Head. He leads the engineering team in developing pioneering solutions in Physical AI and automation."
     },
     {
-        keywords: ["thanks", "thank", "bye", "goodbye"],
-        answer: "You're welcome! I'm always here if you need me. Have a great day! 🤖"
+        keywords: ["contact", "email", "phone", "location", "address", "reach", "where"],
+        answer: "Reach us at info@aisotop.com or aisotop.robotics@gmail.com. Phone: +91 90747 02722 / +91 97458 15897. We are located in Kaithappoyil, Calicut, Kerala."
+    },
+    {
+        keywords: ["hello", "hi", "hey", "hii", "greetings"],
+        answer: "Hey there! 👋 I'm AISO! I can tell you all about AISOTOP's services, our amazing team (like Akhil or Ressan), or our robotics products. What's on your mind?"
+    },
+    {
+        keywords: ["thanks", "thank", "bye", "goodbye", "cool", "awesome"],
+        answer: "You're welcome! I'm always here if you need me. Have an awesome day! 🤖"
     }
 ];
 
@@ -66,14 +78,17 @@ function AisoRobot({
     size = 120,
     floating = true,
     lookAt = { x: 0, y: 0 },
+    disableTracking = false,
 }: {
     isTalking?: boolean;
     isWaving?: boolean;
     size?: number;
     floating?: boolean;
     lookAt?: { x: number; y: number };
+    disableTracking?: boolean;
 }) {
     const s = size / 120; // scale factor
+    const actualLookAt = disableTracking ? { x: 0, y: 0 } : lookAt;
 
     return (
         <motion.div
@@ -151,24 +166,24 @@ function AisoRobot({
 
                         {/* ── EYES: Happy curved arcs (⌒ ⌒) with SVG ── */}
                         <svg
-                            viewBox="0 0 60 30"
+                            viewBox="0 0 60 38"
                             style={{
                                 position: "absolute",
-                                top: 4 * s, left: 6 * s, right: 6 * s,
-                                width: `calc(100% - ${12 * s}px)`,
-                                height: 26 * s,
+                                top: 0, left: 0,
+                                width: "100%",
+                                height: "100%",
                             }}
                         >
                             <motion.g
                                 animate={{
-                                    x: lookAt.x * 6 * s,
-                                    y: lookAt.y * 4 * s,
+                                    x: actualLookAt.x * 3.5,
+                                    y: actualLookAt.y * 2.5,
                                 }}
-                                transition={{ type: "spring", stiffness: 150, damping: 15 }}
+                                transition={{ type: "spring", stiffness: 150, damping: 20 }}
                             >
                                 {/* Left eye — happy arc */}
                                 <motion.path
-                                    d="M10,18 Q18,8 26,18"
+                                    d="M14,22 Q22,10 30,22"
                                     fill="none"
                                     stroke="#56D7C0"
                                     strokeWidth="3.5"
@@ -183,12 +198,12 @@ function AisoRobot({
                                         times: [0, 0.45, 0.5, 0.55, 1],
                                         ease: "easeInOut"
                                     }}
-                                    style={{ originY: "18px" }}
+                                    style={{ originY: "22px", originX: "22px" }}
                                 />
 
                                 {/* Right eye — happy arc */}
                                 <motion.path
-                                    d="M34,18 Q42,8 50,18"
+                                    d="M34,22 Q42,10 50,22"
                                     fill="none"
                                     stroke="#56D7C0"
                                     strokeWidth="3.5"
@@ -201,19 +216,19 @@ function AisoRobot({
                                         duration: 4,
                                         repeat: Infinity,
                                         times: [0, 0.45, 0.5, 0.55, 1],
-                                        offset: 0.1,
+                                        delay: 0.1,
                                         ease: "easeInOut"
                                     }}
-                                    style={{ originY: "18px" }}
+                                    style={{ originY: "22px", originX: "42px" }}
                                 />
 
-                                {/* Subtle eye bracket marks (re-aligned) */}
+                                {/* Balanced eye bracket marks */}
                                 <motion.g
-                                    animate={{ opacity: [1, 1, 0.1, 1, 1] }}
+                                    animate={{ opacity: [0.6, 0.6, 0.1, 0.6, 0.6] }}
                                     transition={{ duration: 4, repeat: Infinity, times: [0, 0.45, 0.5, 0.55, 1] }}
                                 >
-                                    <line x1="8" y1="12" x2="11" y2="10" stroke="#56D7C0" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
-                                    <line x1="52" y1="12" x2="49" y2="10" stroke="#56D7C0" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
+                                    <line x1="12" y1="16" x2="15" y2="14" stroke="#56D7C0" strokeWidth="1.5" strokeLinecap="round" />
+                                    <line x1="52" y1="16" x2="49" y2="14" stroke="#56D7C0" strokeWidth="1.5" strokeLinecap="round" />
                                 </motion.g>
                             </motion.g>
 
@@ -507,14 +522,18 @@ export function RobotAssistant() {
     }, []);
 
     useEffect(() => {
-        if (isOpen) setShowGreeting(false);
-    }, [isOpen]);
-
-    useEffect(() => {
         if (scrollRef.current) {
-            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+            // Using requestAnimationFrame to ensure the DOM has updated before scrolling
+            requestAnimationFrame(() => {
+                if (scrollRef.current) {
+                    scrollRef.current.scrollTo({
+                        top: scrollRef.current.scrollHeight,
+                        behavior: "smooth"
+                    });
+                }
+            });
         }
-    }, [messages, isTyping]);
+    }, [messages, isTyping, isOpen]);
 
     const handleSend = () => {
         if (!inputValue.trim()) return;
@@ -536,10 +555,27 @@ export function RobotAssistant() {
 
     const getResponse = (query: string) => {
         const q = query.toLowerCase();
-        const match = KNOWLEDGE_BASE.find(k =>
-            k.keywords.some(keyword => q.includes(keyword))
-        );
-        return match ? match.answer : "I'm sorry, I don't have information on that. You can ask me about our services, products, team, or contact details!";
+
+        // Advanced Relevance Scoring
+        const scoredResults = KNOWLEDGE_BASE.map(item => {
+            let score = 0;
+            item.keywords.forEach(keyword => {
+                const kw = keyword.toLowerCase();
+                if (q === kw) score += 10; // Exact match
+                else if (q.includes(kw)) score += 5; // Partial match
+            });
+            return { ...item, score };
+        }).filter(item => item.score > 0);
+
+        // Sort by highest score
+        scoredResults.sort((a, b) => b.score - a.score);
+
+        if (scoredResults.length > 0) {
+            // If the top score is high enough, return it
+            return scoredResults[0].answer;
+        }
+
+        return "I'm sorry, I couldn't find a specific answer for that. You can ask me about our team (like Akhil or Ressan), our services, or our mission!";
     };
 
     return (
@@ -557,7 +593,7 @@ export function RobotAssistant() {
                         <div className="p-3 bg-gradient-to-r from-[#0D9488] to-[#0891B2] flex items-center justify-between">
                             <div className="flex items-center gap-3">
                                 <div className="w-8 h-8">
-                                    <AisoRobot size={32} isTalking={isTalking} floating={false} />
+                                    <AisoRobot size={32} isTalking={isTalking} floating={false} disableTracking={true} />
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-white text-sm leading-none">AISO</h4>
@@ -572,13 +608,17 @@ export function RobotAssistant() {
                             </button>
                         </div>
 
-                        {/* Messages */}
-                        <div ref={scrollRef} className="flex-1 overflow-y-auto p-3 space-y-3">
+                        {/* Messages Area with fixed height and overflow */}
+                        <div
+                            ref={scrollRef}
+                            className="flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth custom-scrollbar"
+                            style={{ scrollbarWidth: 'thin' }}
+                        >
                             {messages.map((m) => (
                                 <div key={m.id} className={`flex ${m.sender === "user" ? "justify-end" : "justify-start gap-2"}`}>
                                     {m.sender === "bot" && (
                                         <div className="w-6 h-8 flex-shrink-0">
-                                            <AisoRobot size={24} isTalking={isTalking} floating={false} />
+                                            <AisoRobot size={24} isTalking={isTalking} floating={false} disableTracking={true} />
                                         </div>
                                     )}
                                     <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${m.sender === "user"
@@ -667,6 +707,7 @@ export function RobotAssistant() {
                     isTalking={isTalking}
                     floating={true}
                     lookAt={lookAt}
+                    disableTracking={isOpen}
                 />
             </motion.button>
         </div>
