@@ -465,6 +465,7 @@ export function RobotAssistant() {
     const [isTouring, setIsTouring] = useState(false);
     const [tourStep, setTourStep] = useState(-1);
     const [tourMessage, setTourMessage] = useState("");
+    const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
     const scrollRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -514,6 +515,25 @@ export function RobotAssistant() {
         return () => clearTimeout(timer);
     }, []);
 
+    const stopSpeech = () => {
+        window.speechSynthesis.cancel();
+        setIsTalking(false);
+    };
+
+    const speak = (text: string) => {
+        stopSpeech();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.95;
+        utterance.pitch = 1.1; // Slightly higher robot-like pitch
+
+        utterance.onstart = () => setIsTalking(true);
+        utterance.onend = () => setIsTalking(false);
+        utterance.onerror = () => setIsTalking(false);
+
+        speechRef.current = utterance;
+        window.speechSynthesis.speak(utterance);
+    };
+
     useEffect(() => {
         if (isTouring && tourStep >= 0 && tourStep < TOUR_STEPS.length) {
             const step = TOUR_STEPS[tourStep];
@@ -521,8 +541,7 @@ export function RobotAssistant() {
             if (element) {
                 element.scrollIntoView({ behavior: "smooth", block: "center" });
                 setTourMessage(step.message);
-                setIsTalking(true);
-                setTimeout(() => setIsTalking(false), 3000);
+                speak(step.message);
             }
         }
     }, [isTouring, tourStep]);
@@ -536,6 +555,7 @@ export function RobotAssistant() {
     };
 
     const nextStep = () => {
+        stopSpeech();
         if (tourStep < TOUR_STEPS.length - 1) {
             setTourStep(prev => prev + 1);
         } else {
@@ -572,8 +592,7 @@ export function RobotAssistant() {
             const botMessage: Message = { id: Date.now() + 1, text: responseText, sender: "bot" };
             setMessages(prev => [...prev, botMessage]);
             setIsTyping(false);
-            // Keep talking for a bit after message appears
-            setTimeout(() => setIsTalking(false), 1500);
+            speak(responseText);
         }, 1200);
     };
 
@@ -712,7 +731,7 @@ export function RobotAssistant() {
                     >
                         <div className="flex justify-between items-center mb-2">
                             <span className="text-[10px] font-black uppercase tracking-widest text-[#0D9488]">AISO Guide • {tourStep + 1}/{TOUR_STEPS.length}</span>
-                            <button onClick={() => { setIsTouring(false); setTourStep(-1); }} className="text-foreground/40 hover:text-foreground/80">
+                            <button onClick={() => { setIsTouring(false); setTourStep(-1); stopSpeech(); }} className="text-foreground/40 hover:text-foreground/80">
                                 <X size={14} />
                             </button>
                         </div>
