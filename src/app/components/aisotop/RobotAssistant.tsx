@@ -13,51 +13,47 @@ type Message = {
 const KNOWLEDGE_BASE = [
     {
         keywords: ["who", "what", "aisotop", "about", "mission", "vision", "goal"],
-        answer: "I'm AISO! AISOTOP is a next-generation Physical AI, robotics, and automation company. Our mission is bridging digital intelligence with physical execution to solve real-world challenges and transform vision into reality."
+        answer: "AISOTOP is a pioneering Physical AI and robotics company. We bridge digital intelligence with physical execution to solve real-world challenges through innovative automation and research! 🚀"
     },
     {
         keywords: ["services", "do", "offer", "automation", "robotics", "physical ai", "smart systems", "industrial", "custom"],
-        answer: "We offer specialized solutions in Physical AI & Robotics, AI Integrated Smart Systems, Industrial & Custom Automation, and Hands-on Innovation Programs."
+        answer: "We provide cutting-edge solutions in Physical AI & Robotics, AI Integrated Smart Systems, Industrial Automation, and specialized Innovation Programs for education and industry! 🛠️"
     },
     {
-        keywords: ["education", "school", "college", "workshop", "training", "program"],
-        answer: "We empower schools and colleges through robotics training, workshops, and project-based learning to bridge the gap between theory and industry. Ask me about our Robotics Training for Schools or Workshops for Colleges!"
+        keywords: ["education", "school", "college", "workshop", "training", "program", "student"],
+        answer: "We are deeply committed to education! We offer Robotics Training for Schools, Advanced Workshops for Colleges, and Project-Based Learning programs to prepare the next generation for the industry. 🎓"
     },
     {
-        keywords: ["products", "innovation", "robot", "innovative"],
-        answer: "We develop innovative robotics products integrated with AI, such as our Physical AI systems and smart automation units, designed to solve industrial and educational challenges."
-    },
-    {
-        keywords: ["team", "people", "who works", "founder", "engineers"],
-        answer: "Our core team of experts includes Akhil AV, Muhammed Ressan, and Marjana Parveen as Robotics Research Engineers, led by Anshad K, our Robotics Research Head."
+        keywords: ["team", "people", "who works", "founder", "engineers", "members"],
+        answer: "Our powerhouse team includes Akhil AV, Muhammed Ressan, and Marjana Parveen as Robotics Research Engineers, led by our Robotics Research Head, Anshad K! 👥"
     },
     {
         keywords: ["akhil", "akhi", "av"],
-        answer: "Akhil AV is a Robotics Research Engineer at AISOTOP. He's one of the key minds behind our physical AI and robotics innovation!"
+        answer: "Akhil AV is one of our talented Robotics Research Engineers. He specializes in Physical AI and is a key driver of innovation here at AISOTOP! 🤖"
     },
     {
         keywords: ["ressan", "muhammed", "reesan"],
-        answer: "Muhammed Ressan is a Robotics Research Engineer here at AISOTOP, dedicated to solving real-world problems through robotics."
+        answer: "Muhammed Ressan is a brilliant Robotics Research Engineer at AISOTOP, focused on turning complex robotics concepts into reality. 🔧"
     },
     {
         keywords: ["marjana", "parveen"],
-        answer: "Marjana Parveen is a Robotics Research Engineer at AISOTOP, contributing her expertise to our next-gen robotics projects."
+        answer: "Marjana Parveen is a skilled Robotics Research Engineer on our team, contributing significantly to our robotics and automation research. 🔬"
     },
     {
-        keywords: ["anshad", "anshad k", "head"],
-        answer: "Anshad K is our Robotics Research Head. He leads the engineering team in developing pioneering solutions in Physical AI and automation."
+        keywords: ["anshad", "anshad k", "head", "leader", "boss"],
+        answer: "Anshad K is our Robotics Research Head. He provides the vision and leadership for our entire engineering and research department! 👑"
     },
     {
-        keywords: ["contact", "email", "phone", "location", "address", "reach", "where"],
-        answer: "Reach us at info@aisotop.com or aisotop.robotics@gmail.com. Phone: +91 90747 02722 / +91 97458 15897. We are located in Kaithappoyil, Calicut, Kerala."
+        keywords: ["contact", "email", "phone", "location", "address", "reach", "where", "call", "mail", "map"],
+        answer: "You can reach us at info@aisotop.com or +91 90747 02722. We are located at west, Kaithappoyil Bridge, Kozhikode, Kerala 673586. Feel free to drop by! 📍"
     },
     {
-        keywords: ["hello", "hi", "hey", "hii", "greetings"],
-        answer: "Hey there! 👋 I'm AISO! I can tell you all about AISOTOP's services, our amazing team (like Akhil or Ressan), or our robotics products. What's on your mind?"
+        keywords: ["hello", "hi", "hey", "hii", "greetings", "anyone there"],
+        answer: "Hello! I'm AISO, your intelligent AISOTOP assistant. I'd love to chat about our robots, our amazing team, or how we can help you with automation. What's on your mind? 😊"
     },
     {
-        keywords: ["thanks", "thank", "bye", "goodbye", "cool", "awesome"],
-        answer: "You're welcome! I'm always here if you need me. Have an awesome day! 🤖"
+        keywords: ["thanks", "thank", "bye", "goodbye", "cool", "awesome", "great"],
+        answer: "You're very welcome! I'm always here if you have more questions. Stay robotic! 🤖✨"
     }
 ];
 
@@ -603,15 +599,18 @@ export function RobotAssistant() {
     };
 
     const getResponse = (query: string) => {
-        const q = query.toLowerCase();
+        const q = query.toLowerCase().trim();
+
+        if (q.length < 2) return "I'm listening! Tell me more about what you're looking for. 😊";
 
         // Advanced Relevance Scoring
         const scoredResults = KNOWLEDGE_BASE.map(item => {
             let score = 0;
             item.keywords.forEach(keyword => {
                 const kw = keyword.toLowerCase();
-                if (q === kw) score += 10; // Exact match
-                else if (q.includes(kw)) score += 5; // Partial match
+                if (q === kw) score += 50; // Exact match (priority)
+                else if (q.split(/\s+/).includes(kw)) score += 20; // Word match
+                else if (q.includes(kw)) score += 5; // Substring match
             });
             return { ...item, score };
         }).filter(item => item.score > 0);
@@ -620,11 +619,10 @@ export function RobotAssistant() {
         scoredResults.sort((a, b) => b.score - a.score);
 
         if (scoredResults.length > 0) {
-            // If the top score is high enough, return it
             return scoredResults[0].answer;
         }
 
-        return "I'm sorry, I couldn't find a specific answer for that. You can ask me about our team (like Akhil or Ressan), our services, or our mission!";
+        return "That's an interesting question! I don't have a specific answer for that yet, but I can tell you about our AISOTOP team, our Physical AI services, or how to contact us! 🚀";
     };
 
     return (
