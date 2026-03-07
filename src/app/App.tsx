@@ -57,17 +57,17 @@ export default function App() {
           <div className="noise-overlay" />
           <Navbar />
           <main>
-            <Hero />
-            <About />
-            <Services />
-            <Automation />
-            <Products />
-            <Unique />
-            <Education />
-            <Team />
-            <Contribution />
-            <StudentProjects />
-            <Contact />
+            <div id="hero"><Hero /></div>
+            <div id="about"><About /></div>
+            <div id="services"><Services /></div>
+            <div id="automation"><Automation /></div>
+            <div id="products"><Products /></div>
+            <div id="unique"><Unique /></div>
+            <div id="education"><Education /></div>
+            <div id="team"><Team /></div>
+            <div id="contribution"><Contribution /></div>
+            <div id="projects"><StudentProjects /></div>
+            <div id="contact"><Contact /></div>
           </main>
           <RobotAssistant />
         </div>

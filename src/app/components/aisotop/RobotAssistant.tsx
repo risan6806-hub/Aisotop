@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Send } from "lucide-react";
+import { X, Send, BookOpen, ChevronRight, Play } from "lucide-react";
 
 type Message = {
     id: number;
@@ -59,6 +59,17 @@ const KNOWLEDGE_BASE = [
         keywords: ["thanks", "thank", "bye", "goodbye", "cool", "awesome"],
         answer: "You're welcome! I'm always here if you need me. Have an awesome day! 🤖"
     }
+];
+
+const TOUR_STEPS = [
+    { id: "hero", message: "Welcome to AISOTOP! We bridge digital intelligence with physical execution. 🚀" },
+    { id: "about", message: "Discover how we solve real-world challenges through innovation and robotics. 💡" },
+    { id: "services", message: "We offer specialized solutions in Physical AI, Smart Systems, and Automation. 🛠️" },
+    { id: "automation", message: "Our automation expertise helps industries operate smarter and more efficiently. 🤖" },
+    { id: "products", message: "Check out our high-performance robotics products integrated with AI. 📦" },
+    { id: "education", message: "We empower students with hands-on robotics training and workshops. 🎓" },
+    { id: "team", message: "Meet our dedicated team of Robotics Research Engineers! 👥" },
+    { id: "contact", message: "Ready to transform your vision into reality? Get in touch with us! 📞" }
 ];
 
 /* ═══════════════════════════════════════════════════════════
@@ -451,12 +462,19 @@ export function RobotAssistant() {
     const [inputValue, setInputValue] = useState("");
     const [isTyping, setIsTyping] = useState(false);
     const [lookAt, setLookAt] = useState({ x: 0, y: 0 });
+    const [isTouring, setIsTouring] = useState(false);
+    const [tourStep, setTourStep] = useState(-1);
+    const [tourMessage, setTourMessage] = useState("");
     const scrollRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
     // Mouse Tracking Logic
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
+            if (isTouring) {
+                setLookAt({ x: 0, y: -0.4 }); // Look up at the narration bubble
+                return;
+            }
             if (!containerRef.current) return;
             const rect = containerRef.current.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
@@ -495,6 +513,37 @@ export function RobotAssistant() {
         }, 2000);
         return () => clearTimeout(timer);
     }, []);
+
+    useEffect(() => {
+        if (isTouring && tourStep >= 0 && tourStep < TOUR_STEPS.length) {
+            const step = TOUR_STEPS[tourStep];
+            const element = document.getElementById(step.id);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "center" });
+                setTourMessage(step.message);
+                setIsTalking(true);
+                setTimeout(() => setIsTalking(false), 3000);
+            }
+        }
+    }, [isTouring, tourStep]);
+
+    const startTour = () => {
+        setIsOpen(false);
+        setIsTouring(true);
+        setTourStep(0);
+        setIsWaving(true);
+        setTimeout(() => setIsWaving(false), 2000);
+    };
+
+    const nextStep = () => {
+        if (tourStep < TOUR_STEPS.length - 1) {
+            setTourStep(prev => prev + 1);
+        } else {
+            setIsTouring(false);
+            setTourStep(-1);
+            setTourMessage("");
+        }
+    };
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -622,23 +671,61 @@ export function RobotAssistant() {
 
                         {/* Input */}
                         <div className="p-3 border-t border-border bg-background/50">
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    value={inputValue}
-                                    onChange={(e) => setInputValue(e.target.value)}
-                                    onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                                    placeholder="Ask AISO anything..."
-                                    className="w-full bg-muted/50 border border-border rounded-full py-2.5 pl-4 pr-12 text-sm focus:outline-none focus:border-[#0D9488]/50 transition-colors"
-                                />
+                            <div className="flex gap-2">
                                 <button
-                                    onClick={handleSend}
-                                    className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-gradient-to-r from-[#0D9488] to-[#0891B2] text-white rounded-full flex items-center justify-center hover:scale-105 transition-transform"
+                                    onClick={startTour}
+                                    title="Start Guided Tour"
+                                    className="w-10 h-10 bg-muted/80 text-foreground/70 rounded-full flex items-center justify-center hover:bg-[#0D9488]/10 hover:text-[#0D9488] transition-all"
                                 >
-                                    <Send size={14} />
+                                    <BookOpen size={18} />
                                 </button>
+                                <div className="relative flex-1">
+                                    <input
+                                        type="text"
+                                        value={inputValue}
+                                        onChange={(e) => setInputValue(e.target.value)}
+                                        onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                                        placeholder="Ask AISO anything..."
+                                        className="w-full bg-muted/50 border border-border rounded-full py-2.5 pl-4 pr-12 text-sm focus:outline-none focus:border-[#0D9488]/50 transition-colors"
+                                    />
+                                    <button
+                                        onClick={handleSend}
+                                        className="absolute right-1 top-1/2 -translate-y-1/2 w-8 h-8 bg-gradient-to-r from-[#0D9488] to-[#0891B2] text-white rounded-full flex items-center justify-center hover:scale-105 transition-transform"
+                                    >
+                                        <Send size={14} />
+                                    </button>
+                                </div>
                             </div>
                         </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Guided Tour Narration Bubble */}
+            <AnimatePresence>
+                {isTouring && (
+                    <motion.div
+                        initial={{ opacity: 0, x: 20, scale: 0.9 }}
+                        animate={{ opacity: 1, x: 0, scale: 1 }}
+                        exit={{ opacity: 0, x: 20, scale: 0.9 }}
+                        className="absolute bottom-32 right-0 w-[280px] bg-card/95 backdrop-blur-xl border border-[#0D9488]/30 rounded-3xl p-4 shadow-2xl z-30"
+                    >
+                        <div className="flex justify-between items-center mb-2">
+                            <span className="text-[10px] font-black uppercase tracking-widest text-[#0D9488]">AISO Guide • {tourStep + 1}/{TOUR_STEPS.length}</span>
+                            <button onClick={() => { setIsTouring(false); setTourStep(-1); }} className="text-foreground/40 hover:text-foreground/80">
+                                <X size={14} />
+                            </button>
+                        </div>
+                        <p className="text-sm font-medium leading-relaxed mb-4">
+                            {tourMessage}
+                        </p>
+                        <button
+                            onClick={nextStep}
+                            className="w-full bg-gradient-to-r from-[#0D9488] to-[#0891B2] text-white text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+                        >
+                            {tourStep < TOUR_STEPS.length - 1 ? "Next Section" : "Finish Tour"}
+                            <ChevronRight size={14} />
+                        </button>
                     </motion.div>
                 )}
             </AnimatePresence>
