@@ -1,6 +1,6 @@
 import { Section } from "./Section";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
-import { Mail, MapPin, Phone, Globe, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Mail, MapPin, Phone, Globe, Linkedin, Instagram } from "lucide-react";
 import { motion } from "motion/react";
 import logo from "figma:asset/48d643282720ccf0457972cedd4b1db2988d0ebb.png";
 
@@ -40,8 +40,6 @@ export function Contact() {
                         </p>
                         <div className="flex gap-4 mt-8">
                             {[
-                                { icon: Facebook, label: "Facebook", href: "#" },
-                                { icon: Twitter, label: "Twitter", href: "#" },
                                 { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/aisotop-undefined-0098b33b5" },
                                 { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/aisotop._?igsh=MWk3YXo0bDM1cmds&utm_source=qr" }
                             ].map((item, i) => (
